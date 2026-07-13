@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NIA.cl | Soluciones Digitales para PYMEs Chilenas</title>
+<meta name="description" content="Webs rápidas, honestas y diseñadas para vender. Respaldo de Ingeniería Informática real. Santiago, Chile."/>
+<meta property="og:title" content="NIA.cl — Tu presencia digital, en 7 días."/>
+<meta property="og:description" content="Páginas web económicas, sin letra chica y con Webpay incluido. Hecho por ingenieros."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+/* ─── RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:#faf9f7;color:#1e1c1c;
+  font-family:'Outfit',sans-serif;font-size:16px;
+  font-weight:300;line-height:1.65;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{max-width:100%;display:block}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:#faf9f7}
+::-webkit-scrollbar-thumb{background:#d4a5a0;border-radius:2px}
+
+/* ─── TOKENS ─── */
+:root{
+  --white:#faf9f7; --off:#f3f0ec; --off2:#ece8e2;
+  --black:#111010; --deep:#0c0a0a; --ink:#1e1c1c;
+  --ink-light:#5a5655; --ink-faint:#9e9896;
+  --rose:#d4a5a0; --rose-deep:#b8827c;
+  --rose-pale:#eddbd9; --rose-faint:#f7efee;
+  --sage:#8aaba6; --sage-deep:#5c8a84;
+  --border:#e2dcd8; --border-dark:#c8c0bc;
+  --fd:'Cormorant Garamond',Georgia,serif;
+  --fb:'Outfit',sans-serif;
+  --r:10px; --rs:6px; --max:1100px;
+  --sh0:0 1px 4px rgba(17,16,16,.05);
+  --sh1:0 4px 24px rgba(17,16,16,.08);
+  --sh2:0 12px 48px rgba(17,16,16,.11);
+}
+
+/* ─── LAYOUT ─── */
+.container{max-width:var(--max);margin:0 auto;padding:0 32px}
+section{position:relative}
+
+/* ─── TYPE ─── */
+h1{font-family:var(--fd);font-weight:300;font-size:clamp(3rem,5.8vw,5.2rem);line-height:1.03;letter-spacing:-.015em;color:var(--black)}
+h1 em{font-style:italic;color:var(--rose-deep)}
+h1.inv{color:var(--white)}
+h1.inv em{color:var(--rose)}
+h2{font-family:var(--fd);font-weight:400;font-size:clamp(2rem,3.8vw,3.4rem);line-height:1.08;letter-spacing:-.01em;color:var(--black)}
+h2 em{font-style:italic;color:var(--rose-deep)}
+h2.inv{color:var(--white)}
+h2.inv em{color:var(--rose)}
+h3{font-family:var(--fd);font-weight:500;font-size:1.35rem;letter-spacing:-.01em;color:var(--black)}
+p{color:var(--ink-light)}
+.label{display:block;font-family:var(--fb);font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:10px}
+.label.inv{color:rgba(212,165,160,.7)}
+
+/* ─── LOGO SVG ─── */
+/* Mark: open-circle arc with rose dot at end, black dot at start */
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.reveal-fast{transition-duration:.5s}
+
+/* ─── BUTTONS ─── */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--fb);font-size:.8rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:14px 28px;border-radius:var(--rs);border:1px solid;cursor:pointer;transition:.25s}
+.btn-dark{background:var(--black);color:var(--white);border-color:var(--black)}
+.btn-dark:hover{background:var(--ink);transform:translateY(-1px);box-shadow:var(--sh1)}
+.btn-outline{background:transparent;color:var(--ink);border-color:var(--border-dark)}
+.btn-outline:hover{border-color:var(--black);color:var(--black);transform:translateY(-1px)}
+.btn-rose{background:var(--rose);color:var(--black);border-color:var(--rose)}
+.btn-rose:hover{background:var(--rose-deep);border-color:var(--rose-deep);transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,165,160,.35)}
+.btn-inv{background:var(--white);color:var(--black);border-color:var(--white)}
+.btn-inv:hover{background:var(--off);transform:translateY(-1px)}
+.btn-inv-outline{background:transparent;color:rgba(250,249,247,.65);border-color:rgba(250,249,247,.2)}
+.btn-inv-outline:hover{color:var(--white);border-color:rgba(250,249,247,.5)}
+.btn svg{flex-shrink:0}
+
+/* ═══════════════════════════════════
+   NAV
+═══════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(18px) saturate(150%);background:rgba(250,249,247,.88);border-bottom:1px solid var(--border);transition:background .3s}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-logo{display:flex;align-items:center;gap:9px}
+.nav-logo .mark-svg{width:28px;height:28px;flex-shrink:0}
+.nav-logo .wm{font-family:var(--fd);font-weight:400;font-size:1.45rem;letter-spacing:.04em;color:var(--black);display:flex;align-items:baseline;gap:1px}
+.nav-logo .wm .dot{color:var(--rose-deep)}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-size:.75rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-light);transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--rose);transform:scaleX(0);transform-origin:left;transition:.25s}
+.nav-links a:hover{color:var(--black)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{font-size:.72rem!important;font-weight:600!important;padding:9px 20px;border-radius:var(--rs);background:var(--black)!important;color:var(--white)!important;letter-spacing:.08em!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--ink)!important;transform:translateY(-1px)!important}
+.mob-btn{display:none;background:none;border:none;cursor:pointer;color:var(--black);padding:4px}
+.hbg{display:flex;flex-direction:column;gap:5px}
+.hbg span{width:22px;height:1.5px;background:currentColor;border-radius:1px;display:block;transition:.3s}
+.mob-menu{display:none;position:fixed;inset:0;z-index:99;background:var(--white);flex-direction:column;align-items:center;justify-content:center;gap:36px}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--black);transition:color .2s}
+.mob-menu a:hover{color:var(--rose-deep)}
+.mob-close{position:absolute;top:24px;right:32px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--ink-light)}
+
+/* ═══════════════════════════════════
+   HERO — DARK CINEMATIC
+═══════════════════════════════════ */
+#hero{
+  min-height:100svh;display:flex;align-items:center;
+  padding:100px 0 80px;background:var(--deep);
+  overflow:hidden;position:relative;
+}
+/* ghosted giant text decoration */
+#hero::before{
+  content:'NIA';position:absolute;right:-2%;top:50%;transform:translateY(-50%);
+  font-family:var(--fd);font-size:clamp(20rem,28vw,36rem);font-weight:600;line-height:1;
+  color:rgba(255,255,255,.018);pointer-events:none;letter-spacing:-.02em;user-select:none;
+}
+.hero-in{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:72px;position:relative;z-index:1}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:26px;animation:fadeIn .8s ease both}
+.hero-eyebrow-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);animation:pulse 2.5s infinite}
+.hero-eyebrow span{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,249,247,.4)}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(212,165,160,.12);border:1px solid rgba(212,165,160,.2);color:var(--rose);font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:20px;animation:fadeIn .8s .05s ease both}
+h1.hero-h1{animation:fadeUp .9s .1s ease both;margin-bottom:26px}
+.hero-sub{font-size:1rem;color:rgba(250,249,247,.5);line-height:1.78;max-width:420px;margin-bottom:38px;animation:fadeUp .9s .2s ease both}
+.hero-sub strong{color:rgba(250,249,247,.8);font-weight:400}
+.hero-acts{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .9s .3s ease both}
+.hero-cred{margin-top:50px;padding-top:32px;border-top:1px solid rgba(255,255,255,.08);animation:fadeUp .9s .4s ease both}
+.cred-card{display:inline-flex;align-items:center;gap:14px}
+.cred-av{width:44px;height:44px;border-radius:50%;background:rgba(212,165,160,.15);border:1px solid rgba(212,165,160,.25);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:500;font-size:.95rem;color:var(--rose);flex-shrink:0}
+.cred-name{font-weight:500;font-size:.86rem;color:rgba(250,249,247,.85);letter-spacing:.01em}
+.cred-title{font-size:.7rem;color:rgba(250,249,247,.35);letter-spacing:.04em;font-weight:400}
+.cred-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(212,165,160,.12);border:1px solid rgba(212,165,160,.2);color:var(--rose);font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-top:4px}
+
+/* Hero right — large mark + floating panels */
+.hero-right{position:relative;display:flex;align-items:center;justify-content:center;animation:fadeIn 1s .3s ease both;min-height:480px}
+.hero-mark-wrap{position:relative;display:flex;align-items:center;justify-content:center}
+.hero-mark{width:260px;height:260px;animation:float 6s ease-in-out infinite}
+.float-card{position:absolute;background:rgba(250,249,247,.05);backdrop-filter:blur(12px);border:1px solid rgba(250,249,247,.1);border-radius:var(--r);padding:16px 20px}
+.fc-tl{top:0;left:-20px;animation:float 5s .5s ease-in-out infinite}
+.fc-br{bottom:20px;right:-10px;animation:float 5.5s 1s ease-in-out infinite}
+.fc-label{font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(212,165,160,.65);margin-bottom:4px}
+.fc-val{font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--white);line-height:1;letter-spacing:-.02em}
+.fc-val small{font-size:.75rem;font-family:var(--fb);font-weight:400;color:rgba(250,249,247,.4)}
+.fc-tag{display:inline-block;font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:20px;margin-top:6px;background:rgba(212,165,160,.15);color:var(--rose)}
+.hero-pill-col{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.h-pill{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 16px;background:rgba(250,249,247,.04);border:1px solid rgba(250,249,247,.08);border-radius:var(--rs);transition:.25s}
+.h-pill:hover{background:rgba(250,249,247,.08);border-color:rgba(212,165,160,.3)}
+.hp-name{font-size:.82rem;font-weight:400;color:rgba(250,249,247,.75)}
+.hp-price{font-family:var(--fd);font-size:.95rem;font-weight:500;color:var(--rose)}
+.hp-time{font-size:.62rem;color:rgba(250,249,247,.3)}
+
+/* ═══════════════════════════════════
+   MARQUEE
+═══════════════════════════════════ */
+.mq{background:var(--black);padding:13px 0;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+.mq-track{display:inline-flex;animation:marq 30s linear infinite}
+.mq-item{display:inline-flex;align-items:center;gap:18px;font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:0 28px;color:rgba(250,249,247,.5)}
+.mq-item .s{color:var(--rose);font-size:.85rem}
+
+/* ═══════════════════════════════════
+   STATS STRIP
+═══════════════════════════════════ */
+#stats{padding:72px 0;background:var(--off);border-bottom:1px solid var(--border)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+.stat-cell{background:var(--off);padding:36px 32px;text-align:center}
+.stat-num{font-family:var(--fd);font-size:clamp(2.2rem,3.5vw,3.2rem);font-weight:300;color:var(--black);letter-spacing:-.03em;line-height:1;margin-bottom:6px}
+.stat-num span{color:var(--rose-deep)}
+.stat-lbl{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* ═══════════════════════════════════
+   PAIN
+═══════════════════════════════════ */
+#pain{padding:110px 0;background:var(--white)}
+.pain-head{margin-bottom:56px}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.pain-cell{background:var(--white);padding:44px 38px;transition:background .3s,transform .3s;position:relative;overflow:hidden}
+.pain-cell::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--rose);transform:scaleX(0);transform-origin:left;transition:.4s}
+.pain-cell:hover{background:var(--rose-faint)}
+.pain-cell:hover::before{transform:scaleX(1)}
+.pain-num{font-family:var(--fd);font-size:4rem;font-weight:300;color:var(--rose-pale);line-height:1;margin-bottom:22px;letter-spacing:-.03em}
+.pain-cell h3{font-size:1.05rem;margin-bottom:10px;line-height:1.35}
+.pain-cell p{font-size:.86rem;line-height:1.72;color:var(--ink-light)}
+
+/* ═══════════════════════════════════
+   SERVICES / PRICING
+═══════════════════════════════════ */
+#services{padding:110px 0;background:var(--off)}
+.srv-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:52px;flex-wrap:wrap}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+.p-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:36px 32px;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden}
+.p-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .3s}
+.p-card:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
+.p-card:hover::after{background:var(--rose)}
+.p-card.feat{border-color:var(--rose)}
+.p-card.feat::after{background:var(--rose)}
+.feat-badge{position:absolute;top:18px;right:18px;background:var(--rose-faint);color:var(--rose-deep);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid var(--rose-pale)}
+.p-icon{font-size:1.5rem;margin-bottom:18px}
+.p-name{font-family:var(--fd);font-size:1.4rem;font-weight:500;color:var(--black);margin-bottom:6px}
+.p-desc{font-size:.82rem;color:var(--ink-faint);margin-bottom:26px;line-height:1.6}
+.p-amt{margin-bottom:26px;padding-bottom:26px;border-bottom:1px solid var(--border)}
+.p-from{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint);font-weight:500}
+.p-num{font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--black);letter-spacing:-.02em;line-height:1.1}
+.p-unit{font-size:.72rem;color:var(--ink-faint);font-weight:400}
+.p-feats{flex:1;display:flex;flex-direction:column;gap:9px;margin-bottom:26px}
+.p-feat{display:flex;align-items:flex-start;gap:10px;font-size:.81rem;color:var(--ink-light)}
+.p-ck{width:16px;height:16px;border-radius:50%;background:var(--rose-faint);border:1px solid var(--rose-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:.52rem;color:var(--rose-deep)}
+.btn-card{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;border-radius:var(--rs);font-family:var(--fb);font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.25s;border:1px solid var(--border);background:transparent;color:var(--ink)}
+.btn-card:hover{background:var(--off);border-color:var(--black);color:var(--black)}
+.btn-card.pri{background:var(--black);color:var(--white);border-color:var(--black)}
+.btn-card.pri:hover{background:var(--ink)}
+/* addon */
+.addon{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:32px;display:flex;align-items:center;justify-content:space-between;gap:32px;transition:border-color .3s}
+.addon:hover{border-color:var(--rose)}
+.addon-inf h3{margin-bottom:8px}
+.addon-inf p{font-size:.85rem;color:var(--ink-light);line-height:1.7;max-width:440px}
+.addon-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.addon-tag{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:var(--off);border:1px solid var(--border);color:var(--ink-light)}
+.addon-price{text-align:right;flex-shrink:0}
+.addon-price .fr{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint)}
+.addon-price .am{font-family:var(--fd);font-size:2.4rem;font-weight:300;color:var(--black);letter-spacing:-.02em;line-height:1.1}
+.addon-price .per{font-size:.7rem;color:var(--ink-faint)}
+
+/* ═══════════════════════════════════
+   PROCESS — 6 PASOS (dark section)
+═══════════════════════════════════ */
+#process{padding:110px 0;background:var(--deep);position:relative;overflow:hidden}
+#process::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.014) 0px,rgba(255,255,255,.014) 1px,transparent 1px,transparent 72px);pointer-events:none}
+.proc-head{margin-bottom:72px;text-align:center}
+.proc-head h2{color:var(--white)}
+.proc-head h2 em{color:var(--rose)}
+.proc-head p{color:rgba(250,249,247,.45);max-width:480px;margin:14px auto 0;font-size:.92rem;line-height:1.75}
+.proc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);border-radius:var(--r);overflow:hidden}
+.proc-step{padding:44px 36px;background:rgba(255,255,255,.01);transition:background .3s;position:relative}
+.proc-step:hover{background:rgba(212,165,160,.05)}
+.proc-n{font-family:var(--fd);font-size:3.8rem;font-weight:300;color:rgba(212,165,160,.2);line-height:1;letter-spacing:-.02em;margin-bottom:20px;transition:color .3s}
+.proc-step:hover .proc-n{color:rgba(212,165,160,.5)}
+.proc-step h3{font-size:1.05rem;color:var(--white);margin-bottom:10px;font-weight:500}
+.proc-step p{font-size:.84rem;color:rgba(250,249,247,.45);line-height:1.7}
+.proc-dot{position:absolute;top:36px;right:36px;width:8px;height:8px;border-radius:50%;background:var(--rose);opacity:.4}
+
+/* ═══════════════════════════════════
+   WHY NIA
+═══════════════════════════════════ */
+#why{padding:110px 0;background:var(--white)}
+.why-lay{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.why-sticky{position:sticky;top:100px}
+.why-list{display:flex;flex-direction:column;margin-top:52px}
+.why-item{display:grid;grid-template-columns:56px 1fr;gap:0;padding:26px 0;border-bottom:1px solid var(--border)}
+.why-item:first-child{border-top:1px solid var(--border)}
+.why-n{font-family:var(--fd);font-size:.85rem;font-weight:400;color:var(--rose);padding-top:2px;letter-spacing:.04em}
+.why-t h4{font-family:var(--fb);font-weight:600;font-size:.9rem;color:var(--black);margin-bottom:5px;letter-spacing:.01em}
+.why-t p{font-size:.83rem;color:var(--ink-light);line-height:1.68}
+/* profile card */
+.prof{background:var(--off);border:1px solid var(--border);border-radius:var(--r);padding:34px;margin-top:36px}
+.prof-top{display:flex;align-items:center;gap:16px;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--border)}
+.prof-av{width:54px;height:54px;border-radius:50%;background:var(--rose-pale);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:500;font-size:1.15rem;color:var(--rose-deep);flex-shrink:0}
+.prof-name{font-family:var(--fd);font-weight:500;font-size:1.12rem;color:var(--black);margin-bottom:2px}
+.prof-role{font-size:.68rem;color:var(--ink-faint);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.prof-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
+.pst{background:var(--white);border:1px solid var(--border);border-radius:var(--rs);padding:14px}
+.pst-v{font-family:var(--fd);font-size:1.75rem;font-weight:300;color:var(--black);letter-spacing:-.02em;line-height:1}
+.pst-l{font-size:.63rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:.63rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 11px;border-radius:20px;background:var(--white);border:1px solid var(--border);color:var(--ink-light);transition:.2s;cursor:default}
+.chip:hover{border-color:var(--rose);color:var(--rose-deep)}
+.chip.rose{background:var(--rose-faint);border-color:var(--rose-pale);color:var(--rose-deep)}
+
+/* ═══════════════════════════════════
+   PORTFOLIO
+═══════════════════════════════════ */
+#portfolio{padding:110px 0;background:var(--off)}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.port-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:box-shadow .3s,transform .3s}
+.port-card:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
+.port-thumb{aspect-ratio:4/3;background:var(--off2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+/* mock browser window */
+.mock{width:82%;height:80%;background:var(--white);border-radius:6px;border:1px solid var(--border);box-shadow:var(--sh1);display:flex;flex-direction:column;overflow:hidden}
+.mock-bar{height:18px;background:var(--off);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 8px;gap:4px;flex-shrink:0}
+.mock-dot{width:4px;height:4px;border-radius:50%;background:var(--border-dark)}
+.mock-body{flex:1;padding:8px;display:flex;flex-direction:column;gap:4px}
+.mock-h{height:20px;border-radius:3px;margin-bottom:3px}
+.mock-r{display:flex;gap:4px}
+.mock-b{height:7px;border-radius:2px;flex:1}
+.rose-b{background:var(--rose-pale)}
+.gray-b{background:var(--off2)}
+.dk-b{background:var(--border-dark)}
+.sage-b{background:rgba(138,171,166,.3)}
+.port-ov{position:absolute;inset:0;background:rgba(17,16,16,.78);display:flex;align-items:center;justify-content:center;opacity:0;transition:.25s}
+.port-card:hover .port-ov{opacity:1}
+.port-ov-btn{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.35);padding:10px 20px;border-radius:var(--rs);transition:.2s}
+.port-ov-btn:hover{background:rgba(255,255,255,.1)}
+.port-info{padding:22px 24px}
+.port-type{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:5px}
+.port-info h3{font-size:.98rem;margin-bottom:3px}
+.port-info p{font-size:.78rem;color:var(--ink-faint)}
+.port-coming{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;padding:20px;text-align:center}
+.port-coming .ico{font-size:1.8rem;opacity:.3}
+.port-coming span{font-size:.7rem;color:var(--ink-faint);letter-spacing:.08em;text-transform:uppercase}
+
+/* ═══════════════════════════════════
+   FAQ
+═══════════════════════════════════ */
+#faq{padding:110px 0;background:var(--white)}
+.faq-lay{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+.faq-left{position:sticky;top:100px}
+.faq-list{display:flex;flex-direction:column}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-item:first-child{border-top:1px solid var(--border)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:22px 0;cursor:pointer;gap:14px;font-weight:500;font-size:.9rem;color:var(--black);transition:color .2s;user-select:none}
+.faq-q:hover{color:var(--rose-deep)}
+.faq-ico{width:24px;height:24px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--ink-faint);flex-shrink:0;transition:.3s}
+.faq-item.open .faq-ico{transform:rotate(45deg);border-color:var(--rose);color:var(--rose-deep);background:var(--rose-faint)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s;font-size:.85rem;color:var(--ink-light);line-height:1.75;padding:0}
+.faq-item.open .faq-a{max-height:240px;padding-bottom:20px}
+
+/* ═══════════════════════════════════
+   CTA FINAL — split layout
+═══════════════════════════════════ */
+#cta{padding:0;background:var(--deep);overflow:hidden}
+.cta-in{display:grid;grid-template-columns:1fr 1fr;min-height:480px}
+.cta-left{padding:90px 64px 90px 0;display:flex;flex-direction:column;justify-content:center}
+.cta-right{background:rgba(212,165,160,.06);border-left:1px solid rgba(212,165,160,.15);padding:90px 0 90px 64px;display:flex;flex-direction:column;justify-content:center}
+.cta-left .label{color:rgba(212,165,160,.6)}
+.cta-left h2{color:var(--white);margin-bottom:14px}
+.cta-left h2 em{color:var(--rose)}
+.cta-left p{color:rgba(250,249,247,.45);font-size:.92rem;line-height:1.75;margin-bottom:36px;max-width:380px}
+.cta-acts{display:flex;gap:12px;flex-wrap:wrap}
+.cta-contact{display:flex;flex-direction:column;gap:16px}
+.cc-item{display:flex;align-items:center;gap:12px;padding:16px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);transition:.25s}
+.cc-item:hover{background:rgba(255,255,255,.08);border-color:rgba(212,165,160,.25)}
+.cc-icon{width:36px;height:36px;border-radius:8px;background:rgba(212,165,160,.12);border:1px solid rgba(212,165,160,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cc-icon svg{width:16px;height:16px;color:var(--rose)}
+.cc-lbl{font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,249,247,.35);line-height:1}
+.cc-val{font-size:.88rem;font-weight:400;color:rgba(250,249,247,.8);margin-top:2px}
+.trust-row{display:flex;flex-direction:column;gap:10px;margin-top:28px;padding-top:28px;border-top:1px solid rgba(255,255,255,.07)}
+.tr-item{display:flex;align-items:center;gap:8px;font-size:.72rem;color:rgba(250,249,247,.35);letter-spacing:.05em;text-transform:uppercase}
+.tr-item::before{content:'✓';color:var(--rose);font-size:.7rem}
+
+/* ═══════════════════════════════════
+   FOOTER
+═══════════════════════════════════ */
+footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 28px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.foot-brand p{font-size:.82rem;color:var(--ink-faint);line-height:1.75;max-width:240px;margin-top:12px}
+.foot-brand .cb{margin-top:14px}
+.foot-col h5{font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-light);margin-bottom:16px}
+.foot-col ul{display:flex;flex-direction:column;gap:10px}
+.foot-col li a{font-size:.82rem;color:var(--ink-faint);transition:color .2s}
+.foot-col li a:hover{color:var(--rose-deep)}
+.foot-bot{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.foot-bot p{font-size:.73rem;color:var(--ink-faint)}
+/* footer logo */
+.foot-logo{display:flex;align-items:center;gap:9px;margin-bottom:4px}
+.foot-logo .wm{font-family:var(--fd);font-weight:400;font-size:1.2rem;letter-spacing:.04em;color:var(--black)}
+.foot-logo .dot{color:var(--rose-deep)}
+
+/* ═══════════════════════════════════
+   WHATSAPP FLOAT
+═══════════════════════════════════ */
+.wa{position:fixed;bottom:28px;right:28px;z-index:200;width:54px;height:54px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .25s,box-shadow .25s;animation:float 4s ease-in-out infinite}
+.wa:hover{transform:scale(1.09);box-shadow:0 8px 28px rgba(37,211,102,.55)}
+.wa svg{width:26px;height:26px}
+.wa-tip{position:absolute;right:62px;white-space:nowrap;background:var(--black);color:var(--white);font-size:.7rem;font-weight:600;letter-spacing:.04em;padding:6px 12px;border-radius:var(--rs);opacity:0;transform:translateX(6px);transition:.2s;pointer-events:none}
+.wa:hover .wa-tip{opacity:1;transform:translateX(0)}
+
+/* ═══════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════ */
+@media(max-width:960px){
+  .hero-in{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .pain-grid{grid-template-columns:1fr}
+  .price-grid{grid-template-columns:1fr}
+  .proc-grid{grid-template-columns:1fr 1fr}
+  .why-lay{grid-template-columns:1fr}
+  .why-sticky{position:static}
+  .port-grid{grid-template-columns:1fr 1fr}
+  .faq-lay{grid-template-columns:1fr}
+  .faq-left{position:static}
+  .cta-in{grid-template-columns:1fr}
+  .cta-right{display:none}
+  .cta-left{padding:80px 0}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .addon{flex-direction:column}
+  .addon-price{text-align:left}
+  .nav-links{display:none}
+  .mob-btn{display:flex}
+}
+@media(max-width:600px){
+  .container{padding:0 20px}
+  h1{font-size:2.7rem}
+  h2{font-size:2rem}
+  .proc-grid{grid-template-columns:1fr}
+  .port-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .hero-acts{flex-direction:column}
+  .btn-dark,.btn-outline,.btn-rose,.btn-inv{width:100%;justify-content:center}
+  .pain-grid{gap:0}
+  .cta-acts{flex-direction:column;align-items:flex-start}
+  .stats-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║           NAV                ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<nav id="main-nav">
+  <div class="container nav-in">
+    <!-- Logo: SVG mark + wordmark -->
+    <a href="#" class="nav-logo" aria-label="NIA.cl — Inicio">
+      <svg class="mark-svg" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M26,4 A22,22 0 1,1 8,37" stroke="#111010" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+        <circle cx="8" cy="37" r="4.5" fill="#d4a5a0"/>
+        <circle cx="26" cy="4" r="3" fill="#111010"/>
+      </svg>
+      <div class="wm">NIA<span class="dot">.</span>cl</div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#services">Servicios</a></li>
+      <li><a href="#process">Proceso</a></li>
+      <li><a href="#why">Nosotros</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://wa.me/56945542404?text=Hola%20NIA.cl!%20Quiero%20cotizar" target="_blank" class="nav-cta">Cotizar →</a></li>
+    </ul>
+    <button class="mob-btn" onclick="document.getElementById('mm').classList.toggle('open')" aria-label="Menú">
+      <div class="hbg"><span></span><span></span><span></span></div>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mob-menu" id="mm">
+  <button class="mob-close" onclick="document.getElementById('mm').classList.remove('open')">✕</button>
+  <a href="#services" onclick="document.getElementById('mm').classList.remove('open')">Servicios</a>
+  <a href="#process" onclick="document.getElementById('mm').classList.remove('open')">Proceso</a>
+  <a href="#why" onclick="document.getElementById('mm').classList.remove('open')">Nosotros</a>
+  <a href="#faq" onclick="document.getElementById('mm').classList.remove('open')">FAQ</a>
+  <a href="https://wa.me/56945542404?text=Hola%20NIA.cl!%20Quiero%20cotizar" target="_blank" style="color:var(--rose)">WhatsApp →</a>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║   HERO — DARK + DRAMATIC     ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-in">
+
+      <!-- Left: copy + CTA -->
+      <div>
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-dot"></div>
+          <span>NIA.cl · Santiago, Chile</span>
+        </div>
+        <span class="hero-tag">
+          <svg width="7" height="7" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+          Disponible para nuevos proyectos
+        </span>
+        <h1 class="hero-h1 inv">
+          Tu negocio,<br>
+          en el mundo<br>
+          <em>digital.</em>
+        </h1>
+        <p class="hero-sub">
+          Páginas web rápidas, honestas y diseñadas para vender.
+          Sin letra chica, sin tecnicismos.<br>
+          <strong>Respaldo real de Ingeniería Informática.</strong>
+        </p>
+        <div class="hero-acts">
+          <a href="https://wa.me/56945542404?text=Hola%20NIA.cl!%20Quiero%20cotizar%20una%20web%20para%20mi%20negocio" target="_blank" class="btn btn-inv">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.123 1.528 5.854L0 24l6.335-1.617C8.024 23.43 9.966 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.883 0-3.636-.497-5.15-1.361l-.369-.219-3.759.959.991-3.661-.24-.38C2.47 15.707 2 13.916 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Cotizar por WhatsApp
+          </a>
+          <a href="#services" class="btn btn-inv-outline">Ver planes →</a>
+        </div>
+
+        <div class="hero-cred">
+          <div class="cred-card">
+            <div class="cred-av">JM</div>
+            <div>
+              <div class="cred-name">Joaquín Molina</div>
+              <div class="cred-title">Ingeniero Informático · Fundador de NIA.cl</div>
+              <div class="cred-badge">
+                <svg width="7" height="7" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Respaldo técnico profesional
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!-- Central large logo mark -->
+        <div class="hero-mark-wrap">
+          <svg class="hero-mark" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M26,4 A22,22 0 1,1 8,37" stroke="rgba(250,249,247,0.85)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <circle cx="8" cy="37" r="4.5" fill="#d4a5a0"/>
+            <circle cx="26" cy="4" r="3" fill="rgba(250,249,247,0.9)"/>
+          </svg>
+        </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq" aria-hidden="true">
+  <div class="mq-track">
+    <span class="mq-item">Webs a medida <span class="s">·</span></span>
+    <span class="mq-item">Webpay & Flow <span class="s">·</span></span>
+    <span class="mq-item">SEO incluido <span class="s">·</span></span>
+    <span class="mq-item">Entrega en 7 días <span class="s">·</span></span>
+    <span class="mq-item">Dominio 100% tuyo <span class="s">·</span></span>
+    <span class="mq-item">Sin letra chica <span class="s">·</span></span>
+    <span class="mq-item">Ingeniería Informática <span class="s">·</span></span>
+    <span class="mq-item">Santiago, Chile <span class="s">·</span></span>
+    <span class="mq-item">Webs a medida <span class="s">·</span></span>
+    <span class="mq-item">Webpay & Flow <span class="s">·</span></span>
+    <span class="mq-item">SEO incluido <span class="s">·</span></span>
+    <span class="mq-item">Entrega en 7 días <span class="s">·</span></span>
+    <span class="mq-item">Dominio 100% tuyo <span class="s">·</span></span>
+    <span class="mq-item">Sin letra chica <span class="s">·</span></span>
+    <span class="mq-item">Ingeniería Informática <span class="s">·</span></span>
+    <span class="mq-item">Santiago, Chile <span class="s">·</span></span>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║   STATS STRIP (new)          ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid reveal">
+      <div class="stat-cell">
+        <div class="stat-num">3<span>+</span></div>
+        <div class="stat-lbl">Años en desarrollo web</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-lbl">Proyectos entregados a tiempo</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">&lt;24<span>h</span></div>
+        <div class="stat-lbl">Tiempo máximo de respuesta</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">3<span>+</span></div>
+        <div class="stat-lbl">Medios de pago integrados</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║   PAIN                       ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section id="pain">
+  <div class="container">
+    <div class="pain-head">
+      <span class="label reveal">¿Te identificas?</span>
+      <h2 class="reveal">Los problemas que<br>resolvemos cada día</h2>
+    </div>
+    <div class="pain-grid reveal">
+      <div class="pain-cell">
+        <div class="pain-num">01</div>
+        <h3>"Pierdo horas respondiendo lo mismo por Instagram"</h3>
+        <p style="margin-top:10px">Precios, horarios, cómo llegar… Una web bien hecha responde esas preguntas las 24 horas, sin que tengas que estar al teléfono.</p>
+      </div>
+      <div class="pain-cell">
+        <div class="pain-num">02</div>
+        <h3>"Las agencias me cobran una fortuna por algo básico"</h3>
+        <p style="margin-top:10px">Presupuestos de $2–5 millones para una web simple son la norma del mercado. En NIA.cl tienes precios claros y justos desde el primer mensaje.</p>
+      </div>
+      <div class="pain-cell">
+        <div class="pain-num">03</div>
+        <h3>"Quiero vender online pero no sé cómo cobrar con tarjeta"</h3>
+        <p style="margin-top:10px">Integramos Webpay, Flow o MercadoPago en tu tienda para que recibas pagos desde el día 1, de forma segura y sin complicaciones técnicas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║   SERVICES / PRICING         ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section id="services">
+  <div class="container">
+    <div class="srv-head">
+      <div>
+        <span class="label">Planes y precios</span>
+        <h2 class="reveal">Transparencia<br>desde el primer día</h2>
+      </div>
+      <p style="max-width:290px;font-size:.88rem;line-height:1.75" class="reveal">Sin sorpresas ni cobros ocultos. Elige el plan que se ajusta a tu negocio hoy.</p>
+    </div>
+
+    <div class="price-grid">
+      <!-- Landing -->
+      <div class="p-card reveal">
+        <div class="p-icon">⚡</div>
+        <div class="p-name">Landing Page</div>
+        <div class="p-desc">Una página poderosa para capturar clientes y cerrar ventas rápido.</div>
+        <div class="p-amt">
+          <div class="p-from">Desde</div>
+          <div class="p-num">$120.000 <span class="p-unit">CLP</span></div>
+        </div>
+        <ul class="p-feats">
+          <li class="p-feat"><span class="p-ck">✓</span>Diseño 100% personalizado</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Sección Hero + llamada a la acción</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Formulario de contacto activo</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Botón WhatsApp flotante</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Dominio .cl incluido (1er año)</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Entrega en 5–7 días hábiles</li>
+        </ul>
+        <a href="https://wa.me/56945542404?text=Me%20interesa%20la%20Landing%20Page%20de%20NIA.cl" target="_blank" class="btn-card">Consultar →</a>
+      </div>
+      <!-- Web Corporativa (featured) -->
+      <div class="p-card feat reveal">
+        <span class="feat-badge">Más popular</span>
+        <div class="p-icon">🌐</div>
+        <div class="p-name">Web Corporativa</div>
+        <div class="p-desc">Presencia profesional completa con todo lo que tu empresa necesita.</div>
+        <div class="p-amt">
+          <div class="p-from">Desde</div>
+          <div class="p-num">$250.000 <span class="p-unit">CLP</span></div>
+        </div>
+        <ul class="p-feats">
+          <li class="p-feat"><span class="p-ck">✓</span>Todo lo del plan Landing</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Hasta 5 páginas o secciones</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Panel de administración (WordPress)</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Blog o galería de productos</li>
+          <li class="p-feat"><span class="p-ck">✓</span>SEO básico configurado</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Correos @tudominio.cl</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Entrega en 7–10 días hábiles</li>
+        </ul>
+        <a href="https://wa.me/56945542404?text=Me%20interesa%20la%20Web%20Corporativa%20de%20NIA.cl" target="_blank" class="btn-card pri">Consultar →</a>
+      </div>
+      <!-- Tienda -->
+      <div class="p-card reveal">
+        <div class="p-icon">🛍️</div>
+        <div class="p-name">Tienda Online</div>
+        <div class="p-desc">E-commerce completo con pagos online, stock e integración Webpay.</div>
+        <div class="p-amt">
+          <div class="p-from">Desde</div>
+          <div class="p-num">$490.000 <span class="p-unit">CLP</span></div>
+        </div>
+        <ul class="p-feats">
+          <li class="p-feat"><span class="p-ck">✓</span>Todo lo del plan Corporativo</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Webpay Plus / Flow / MercadoPago</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Gestión de stock y pedidos</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Catálogo ilimitado de productos</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Panel de ventas y reportes</li>
+          <li class="p-feat"><span class="p-ck">✓</span>Capacitación incluida (2 horas)</li>
+        </ul>
+        <a href="https://wa.me/56945542404?text=Me%20interesa%20la%20Tienda%20Online%20de%20NIA.cl" target="_blank" class="btn-card">Consultar →</a>
+      </div>
+    </div>
+
+    <!-- Addon redes -->
+    <div class="addon reveal">
+      <div class="addon-inf">
+        <h3>Gestión de Redes Sociales</h3>
+        <p>¿Tienes la web pero no llegas a nuevos clientes? Gestionamos tus redes con contenido profesional, estrategia de ventas y pauta en Instagram, Facebook y Google My Business.</p>
+        <div class="addon-tags">
+          <span class="addon-tag">Diseño de posts</span>
+          <span class="addon-tag">Pauta publicitaria</span>
+          <span class="addon-tag">Reporte mensual</span>
+          <span class="addon-tag">Stories semanales</span>
+          <span class="addon-tag">Google My Business</span>
+        </div>
+      </div>
+      <div class="addon-price">
+        <div class="fr">Plan mensual desde</div>
+        <div class="am">$85.000</div>
+        <div class="per">CLP / mes</div>
+        <a href="https://wa.me/56945542404?text=Me%20interesa%20la%20gestión%20de%20redes" target="_blank" class="btn btn-outline" style="margin-top:16px;font-size:.73rem">Cotizar →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║   PROCESO — 6 PASOS (new)    ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section id="process">
+  <div class="container">
+    <div class="proc-head reveal">
+      <span class="label inv">Nuestro método</span>
+      <h2 class="inv">Así trabajamos en <em>NIA</em></h2>
+      <p>Un proceso transparente de 6 pasos para que sepas exactamente qué está pasando con tu proyecto en cada momento. Sin sorpresas, sin silencios.</p>
+    </div>
+
+    <div class="proc-grid reveal">
+      <div class="proc-step">
+        <div class="proc-dot"></div>
+        <div class="proc-n">01</div>
+        <h3>Reunión de diagnóstico</h3>
+        <p>Escuchamos tu negocio, entendemos tus metas y detectamos qué solución digital te va a generar el mayor retorno. Sin presupuestos prematuros.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot"></div>
+        <div class="proc-n">02</div>
+        <h3>Definición técnica</h3>
+        <p>Documentamos exactamente qué se va a construir: páginas, funciones, integraciones y tecnología a usar. Sin letra chica ni sorpresas futuras.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot"></div>
+        <div class="proc-n">03</div>
+        <h3>Presupuesto transparente</h3>
+        <p>Recibes una propuesta clara con precio fijo, plazo de entrega y desglose de cada ítem. Sin costos adicionales de último momento.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot"></div>
+        <div class="proc-n">04</div>
+        <h3>Kickoff y desarrollo</h3>
+        <p>Iniciamos con el 50% de anticipo. Recibes un update de progreso a mitad del proyecto. Tu proyecto está en manos de un Ingeniero Informático.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot"></div>
+        <div class="proc-n">05</div>
+        <h3>Primera entrega</h3>
+        <p>Ves el avance real antes del lanzamiento: diseño, interfaz y funciones para que puedas revisar y ajustar con hasta 2 rondas de cambios incluidas.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot"></div>
+        <div class="proc-n">06</div>
+        <h3>Entrega final y despliegue</h3>
+        <p>Control de calidad completo, testing de pasarelas de pago y publicación en vivo. Todos los accesos quedan en tu nombre. 30 días de soporte post-lanzamiento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║   WHY NIA                    ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section id="why">
+  <div class="container">
+    <div class="why-lay">
+      <div class="why-sticky">
+        <span class="label reveal">Nuestro diferencial</span>
+        <h2 class="reveal">¿Por qué<br>elegir <em>NIA.cl</em>?</h2>
+        <p style="margin-top:16px;font-size:.9rem;line-height:1.8;color:var(--ink-light)" class="reveal">No somos una agencia más. Somos ingenieros que entienden el negocio detrás de cada línea de código.</p>
+
+        <div class="prof reveal" style="margin-top:36px">
+          <div class="prof-top">
+            <div class="prof-av">JM</div>
+            <div>
+              <div class="prof-name">Joaquín Molina Martínez</div>
+              <div class="prof-role">Ingeniero Informático · Fundador</div>
+            </div>
+          </div>
+          <div class="prof-stats">
+            <div class="pst"><div class="pst-v">3+</div><div class="pst-l">Años en desarrollo web</div></div>
+            <div class="pst"><div class="pst-v">100%</div><div class="pst-l">Proyectos entregados a tiempo</div></div>
+            <div class="pst"><div class="pst-v">24h</div><div class="pst-l">Tiempo máx. de respuesta</div></div>
+            <div class="pst"><div class="pst-v">CL</div><div class="pst-l">Enfocado en el mercado chileno</div></div>
+          </div>
+          <div class="chips">
+            <span class="chip rose">Ing. Informático</span>
+            <span class="chip">Código limpio</span>
+            <span class="chip">Webpay</span>
+            <span class="chip">SEO</span>
+            <span class="chip">HTML/CSS</span>
+            <span class="chip">React</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-list reveal">
+        <div class="why-item">
+          <div class="why-n">01</div>
+          <div class="why-t">
+            <h4>Respaldo de un Ingeniero Informático</h4>
+            <p>Código limpio, hosting estable y arquitectura escalable. No es diseño web aficionado — es ingeniería de software aplicada a tu negocio.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-n">02</div>
+          <div class="why-t">
+            <h4>El dominio y la web son 100% tuyos</h4>
+            <p>Te entregamos todos los accesos desde el primer día. Si en algún momento decides cambiar de proveedor, puedes llevarte todo sin restricciones.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-n">03</div>
+          <div class="why-t">
+            <h4>Resultados, no tecnicismos</h4>
+            <p>Explicamos cada decisión en lenguaje simple y directo. Tú decides con información clara, sin jerga que confunda.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-n">04</div>
+          <div class="why-t">
+            <h4>Plazos reales y comunicación directa</h4>
+            <p>Nada de "estamos en eso" sin fecha de entrega. Te informamos el estado del proyecto en todo momento, por WhatsApp o correo.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-n">05</div>
+          <div class="why-t">
+            <h4>Especialistas en el mercado chileno</h4>
+            <p>Integramos Webpay, Flow y MercadoPago. Cumplimos normativa local y usamos servidores de baja latencia en Chile para que tu web cargue rápido.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║   PORTFOLIO                  ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section id="portfolio">
+  <div class="container">
+    <span class="label reveal">Portafolio</span>
+    <h2 class="reveal">Proyectos recientes</h2>
+    <p class="reveal" style="margin-top:12px;max-width:480px;font-size:.9rem;color:var(--ink-light)">Cada web que entregamos está optimizada para vender. Algunos ejemplos del trabajo que hacemos.</p>
+
+    <div class="port-grid">
+      <!-- Project 1 -->
+      <div class="port-card reveal">
+        <div class="port-thumb">
+          <div class="mock">
+            <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+            <div class="mock-body">
+              <div class="mock-h rose-b"></div>
+              <div class="mock-r"><div class="mock-b gray-b"></div><div class="mock-b gray-b"></div></div>
+              <div class="mock-r"><div class="mock-b rose-b" style="flex:2"></div></div>
+              <div class="mock-r"><div class="mock-b gray-b"></div><div class="mock-b gray-b"></div><div class="mock-b gray-b"></div></div>
+              <div class="mock-r"><div class="mock-b dk-b" style="flex:1.5"></div></div>
+            </div>
+          </div>
+          <div class="port-ov"><span class="port-ov-btn">Ver proyecto →</span></div>
+        </div>
+        <div class="port-info">
+          <div class="port-type">Tienda Online</div>
+          <h3>Elevn.Market</h3>
+          <p>Mercado Local con 200+ productos y pago con Flow</p>
+        </div>
+      </div>
+      <!-- Project 2 -->
+      <div class="port-card reveal">
+        <div class="port-thumb" style="background:var(--black)">
+          <div class="mock" style="background:var(--ink)">
+            <div class="mock-bar" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)"><div class="mock-dot" style="background:rgba(255,255,255,.2)"></div><div class="mock-dot" style="background:rgba(255,255,255,.2)"></div><div class="mock-dot" style="background:rgba(255,255,255,.2)"></div></div>
+            <div class="mock-body">
+              <div class="mock-h" style="background:rgba(250,249,247,.08)"></div>
+              <div class="mock-r"><div class="mock-b" style="background:rgba(212,165,160,.3);flex:1"></div><div class="mock-b" style="background:rgba(255,255,255,.05)"></div></div>
+              <div class="mock-r"><div class="mock-b" style="background:rgba(255,255,255,.05)"></div><div class="mock-b" style="background:rgba(255,255,255,.05)"></div></div>
+              <div class="mock-r"><div class="mock-b" style="background:rgba(212,165,160,.2)"></div></div>
+            </div>
+          </div>
+          <div class="port-ov"><span class="port-ov-btn">Ver proyecto →</span></div>
+        </div>
+        <div class="port-info">
+          <div class="port-type">Web Corporativa</div>
+          <h3>Transport Service</h3>
+          <p>Presencia digital con agenda de viajes y servicios</p>
+        </div>
+      </div>
+      <!-- Project 3: placeholder -->
+      <div class="port-card reveal" style="border-style:dashed">
+        <div class="port-thumb" style="background:var(--off)">
+          <div class="port-coming">
+            <div class="ico">＋</div>
+            <span>Tu proyecto aquí</span>
+            <a href="https://wa.me/56945542404" target="_blank" style="color:var(--rose-deep);font-size:.72rem;font-weight:600;letter-spacing:.06em;text-decoration:none;margin-top:4px">Conversemos →</a>
+          </div>
+        </div>
+        <div class="port-info">
+          <div class="port-type" style="color:var(--ink-faint)">Próximamente</div>
+          <h3 style="color:var(--ink-light)">¿Tu negocio?</h3>
+          <p>Hagamos tu proyecto realidad juntos</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║   FAQ                        ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-lay">
+      <div class="faq-left">
+        <span class="label reveal">Preguntas frecuentes</span>
+        <h2 class="reveal">Lo que todo<br>dueño de PYME<br>nos pregunta</h2>
+        <p style="margin-top:16px;font-size:.88rem;line-height:1.8;color:var(--ink-light)" class="reveal">
+          Sabemos que dar el paso al mundo digital genera dudas. Las respondemos antes de que tengas que escribirnos.
+        </p>
+        <div style="margin-top:32px" class="reveal">
+          <a href="https://wa.me/56945542404?text=Tengo%20una%20pregunta%20sobre%20NIA.cl" target="_blank" class="btn btn-rose">
+            ¿Otra duda? Escríbenos →
+          </a>
+        </div>
+      </div>
+
+      <div id="faq-list">
+        <div class="faq-item reveal">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Tengo que pagar mensualmente? <span class="faq-ico">+</span></div>
+          <div class="faq-a">No necesariamente. El desarrollo se paga una sola vez. Lo único con costo anual es el hosting (~$50.000–80.000/año) y el dominio (~$12.000/año). Opcionalmente puedes contratar nuestro plan de mantenimiento mensual si quieres que nos encarguemos de actualizaciones y soporte.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Cómo acepto pagos con tarjeta en Chile? <span class="faq-ico">+</span></div>
+          <div class="faq-a">Integramos Webpay Plus (Transbank), Flow o MercadoPago según lo que te convenga. Todos permiten recibir pagos con tarjeta de crédito, débito y prepago. Te guiamos en todo el proceso de apertura de cuenta si aún no la tienes.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Cuánto demora en estar lista mi web? <span class="faq-ico">+</span></div>
+          <div class="faq-a">Una Landing Page se entrega en 5–7 días hábiles. Una Web Corporativa en 7–10 días. Una Tienda Online puede tomar 10–15 días según la cantidad de productos. Los plazos parten desde que nos envías el material (fotos, textos, logo).</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q" onclick="toggleFaq(this)">¿La web queda a mi nombre o al de NIA? <span class="faq-ico">+</span></div>
+          <div class="faq-a">Todo queda 100% a tu nombre. El dominio se registra con tus datos. El hosting lo contratas tú o te lo facilitamos a tu nombre. Nosotros somos el equipo que construye, pero la propiedad es completamente tuya desde el primer día.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Puedo actualizar la web yo mismo después? <span class="faq-ico">+</span></div>
+          <div class="faq-a">Sí. Desarrollamos con WordPress y panel de administración fácil de usar. Puedes agregar fotos, cambiar precios y actualizar textos sin saber programación. Además incluimos una capacitación básica en todos los planes.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Emiten factura electrónica? <span class="faq-ico">+</span></div>
+          <div class="faq-a">Sí, emitimos boleta o factura electrónica por todos nuestros servicios, perfecta para que puedas descontar el gasto en la declaración de renta de tu empresa.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║   CTA FINAL — split dark     ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section id="cta">
+  <div class="container" style="padding:0">
+    <div class="cta-in">
+      <div class="cta-left reveal">
+        <span class="label inv">Empieza hoy</span>
+        <h2 class="inv">¿Listo para llevar<br>tu PYME al mundo <em>digital</em>?</h2>
+        <p>Escríbenos y en menos de 24 horas tendrás una cotización clara, detallada y sin compromisos.</p>
+        <div class="cta-acts">
+          <a href="https://wa.me/56945542404?text=Hola%20NIA.cl!%20Quiero%20cotizar%20una%20web%20para%20mi%20negocio" target="_blank" class="btn btn-inv">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.123 1.528 5.854L0 24l6.335-1.617C8.024 23.43 9.966 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.883 0-3.636-.497-5.15-1.361l-.369-.219-3.759.959.991-3.661-.24-.38C2.47 15.707 2 13.916 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Cotizar por WhatsApp
+          </a>
+          <a href="mailto:somos.niacl@gmail.com" class="btn btn-inv-outline">somos.niacl@gmail.com</a>
+        </div>
+        <div class="trust-row">
+          <div class="tr-item">Respuesta en menos de 24 horas</div>
+          <div class="tr-item">Cotización sin compromiso</div>
+          <div class="tr-item">Respaldo de Ingeniería Informática</div>
+        </div>
+      </div>
+      <div class="cta-right reveal">
+        <span class="label inv" style="margin-bottom:20px">Contáctanos directamente</span>
+        <div class="cta-contact">
+          <a href="https://wa.me/56945542404" target="_blank" class="cc-item" style="text-decoration:none">
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:16px;height:16px;color:#d4a5a0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.123 1.528 5.854L0 24l6.335-1.617C8.024 23.43 9.966 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.883 0-3.636-.497-5.15-1.361l-.369-.219-3.759.959.991-3.661-.24-.38C2.47 15.707 2 13.916 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            </div>
+            <div>
+              <div class="cc-lbl">WhatsApp</div>
+              <div class="cc-val">+56 9 4554 2404</div>
+            </div>
+          </a>
+          <a href="mailto:somos.niacl@gmail.com" class="cc-item" style="text-decoration:none">
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="width:16px;height:16px;color:#d4a5a0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="cc-lbl">Correo</div>
+              <div class="cc-val">somos.niacl@gmail.com</div>
+            </div>
+          </a>
+          <div class="cc-item">
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="width:16px;height:16px;color:#d4a5a0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="cc-lbl">Ubicación</div>
+              <div class="cc-val">Santiago, Chile</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║   FOOTER                     ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="foot-logo">
+          <svg width="22" height="22" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+            <path d="M26,4 A22,22 0 1,1 8,37" stroke="#111010" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+            <circle cx="8" cy="37" r="4.5" fill="#d4a5a0"/>
+            <circle cx="26" cy="4" r="3" fill="#111010"/>
+          </svg>
+          <span class="wm">NIA<span class="dot">.</span>cl</span>
+        </div>
+        <p>Soluciones digitales para PYMEs chilenas. Webs rápidas, económicas y pensadas para vender.</p>
+        <div class="cb" style="display:inline-flex;align-items:center;gap:5px;background:var(--rose-faint);border:1px solid var(--rose-pale);color:var(--rose-deep);font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-top:14px">
+          <svg width="7" height="7" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          Joaquín Molina M. · Ing. Informático
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Servicios</h5>
+        <ul>
+          <li><a href="#services">Landing Page</a></li>
+          <li><a href="#services">Web Corporativa</a></li>
+          <li><a href="#services">Tienda Online</a></li>
+          <li><a href="#services">Gestión de Redes</a></li>
+          <li><a href="#services">Mantenimiento</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="#why">Por qué NIA.cl</a></li>
+          <li><a href="#process">Nuestro proceso</a></li>
+          <li><a href="#portfolio">Portafolio</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Contacto</h5>
+        <ul>
+          <li><a href="https://wa.me/56945542404" target="_blank">+56 9 4554 2404</a></li>
+          <li><a href="mailto:somos.niacl@gmail.com">somos.niacl@gmail.com</a></li>
+          <li><a href="https://instagram.com/n1a.cl" target="_blank">@n1a.cl</a></li>
+          <li><a href="#">Santiago, Chile</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© 2026 NIA.cl | Todos los derechos reservados</p>
+      <p>Hecho con precisión en Chile · Joaquín Molina Martínez, Ingeniero Informático</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/56945542404?text=Hola%20NIA.cl!%20Quiero%20cotizar%20una%20web" target="_blank" class="wa" aria-label="Contactar por WhatsApp">
+  <span class="wa-tip">¡Cotiza gratis!</span>
+  <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.123 1.528 5.854L0 24l6.335-1.617C8.024 23.43 9.966 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.883 0-3.636-.497-5.15-1.361l-.369-.219-3.759.959.991-3.661-.24-.38C2.47 15.707 2 13.916 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<script>
+// ─── FAQ accordion ───
+function toggleFaq(q) {
+  const item = q.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ─── Scroll reveal ───
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ─── Nav background on scroll ───
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('main-nav');
+  if (!nav) return;
+  nav.style.background = window.scrollY > 60
+    ? 'rgba(250,249,247,.97)'
+    : 'rgba(250,249,247,.88)';
+});
+</script>
+</body>
+</html>
