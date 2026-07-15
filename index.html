@@ -11,419 +11,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
-<style>
-/* ─── RESET ─── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:#faf9f7;color:#1e1c1c;
-  font-family:'Outfit',sans-serif;font-size:16px;
-  font-weight:300;line-height:1.65;
-  overflow-x:hidden;-webkit-font-smoothing:antialiased;
-}
-a{text-decoration:none;color:inherit}
-ul{list-style:none}
-img{max-width:100%;display:block}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:#faf9f7}
-::-webkit-scrollbar-thumb{background:#d4a5a0;border-radius:2px}
-
-/* ─── TOKENS ─── */
-:root{
-  --white:#faf9f7; --off:#f3f0ec; --off2:#ece8e2;
-  --black:#111010; --deep:#0c0a0a; --ink:#1e1c1c;
-  --ink-light:#5a5655; --ink-faint:#9e9896;
-  --rose:#d4a5a0; --rose-deep:#b8827c;
-  --rose-pale:#eddbd9; --rose-faint:#f7efee;
-  --sage:#8aaba6; --sage-deep:#5c8a84;
-  --border:#e2dcd8; --border-dark:#c8c0bc;
-  --fd:'Cormorant Garamond',Georgia,serif;
-  --fb:'Outfit',sans-serif;
-  --r:10px; --rs:6px; --max:1100px;
-  --sh0:0 1px 4px rgba(17,16,16,.05);
-  --sh1:0 4px 24px rgba(17,16,16,.08);
-  --sh2:0 12px 48px rgba(17,16,16,.11);
-}
-
-/* ─── LAYOUT ─── */
-.container{max-width:var(--max);margin:0 auto;padding:0 32px}
-section{position:relative}
-
-/* ─── TYPE ─── */
-h1{font-family:var(--fd);font-weight:300;font-size:clamp(3rem,5.8vw,5.2rem);line-height:1.03;letter-spacing:-.015em;color:var(--black)}
-h1 em{font-style:italic;color:var(--rose-deep)}
-h1.inv{color:var(--white)}
-h1.inv em{color:var(--rose)}
-h2{font-family:var(--fd);font-weight:400;font-size:clamp(2rem,3.8vw,3.4rem);line-height:1.08;letter-spacing:-.01em;color:var(--black)}
-h2 em{font-style:italic;color:var(--rose-deep)}
-h2.inv{color:var(--white)}
-h2.inv em{color:var(--rose)}
-h3{font-family:var(--fd);font-weight:500;font-size:1.35rem;letter-spacing:-.01em;color:var(--black)}
-p{color:var(--ink-light)}
-.label{display:block;font-family:var(--fb);font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:10px}
-.label.inv{color:rgba(212,165,160,.7)}
-
-/* ─── LOGO SVG ─── */
-/* Mark: open-circle arc with rose dot at end, black dot at start */
-
-/* ─── ANIMATIONS ─── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s ease}
-.reveal.vis{opacity:1;transform:translateY(0)}
-.reveal-fast{transition-duration:.5s}
-
-/* ─── BUTTONS ─── */
-.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--fb);font-size:.8rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:14px 28px;border-radius:var(--rs);border:1px solid;cursor:pointer;transition:.25s}
-.btn-dark{background:var(--black);color:var(--white);border-color:var(--black)}
-.btn-dark:hover{background:var(--ink);transform:translateY(-1px);box-shadow:var(--sh1)}
-.btn-outline{background:transparent;color:var(--ink);border-color:var(--border-dark)}
-.btn-outline:hover{border-color:var(--black);color:var(--black);transform:translateY(-1px)}
-.btn-rose{background:var(--rose);color:var(--black);border-color:var(--rose)}
-.btn-rose:hover{background:var(--rose-deep);border-color:var(--rose-deep);transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,165,160,.35)}
-.btn-inv{background:var(--white);color:var(--black);border-color:var(--white)}
-.btn-inv:hover{background:var(--off);transform:translateY(-1px)}
-.btn-inv-outline{background:transparent;color:rgba(250,249,247,.65);border-color:rgba(250,249,247,.2)}
-.btn-inv-outline:hover{color:var(--white);border-color:rgba(250,249,247,.5)}
-.btn svg{flex-shrink:0}
-
-/* ═══════════════════════════════════
-   NAV
-═══════════════════════════════════ */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(18px) saturate(150%);background:rgba(250,249,247,.88);border-bottom:1px solid var(--border);transition:background .3s}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
-.nav-logo{display:flex;align-items:center;gap:9px}
-.nav-logo .mark-svg{width:28px;height:28px;flex-shrink:0}
-.nav-logo .wm{font-family:var(--fd);font-weight:400;font-size:1.45rem;letter-spacing:.04em;color:var(--black);display:flex;align-items:baseline;gap:1px}
-.nav-logo .wm .dot{color:var(--rose-deep)}
-.nav-links{display:flex;align-items:center;gap:30px}
-.nav-links a{font-size:.75rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-light);transition:color .2s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--rose);transform:scaleX(0);transform-origin:left;transition:.25s}
-.nav-links a:hover{color:var(--black)}
-.nav-links a:hover::after{transform:scaleX(1)}
-.nav-cta{font-size:.72rem!important;font-weight:600!important;padding:9px 20px;border-radius:var(--rs);background:var(--black)!important;color:var(--white)!important;letter-spacing:.08em!important}
-.nav-cta::after{display:none!important}
-.nav-cta:hover{background:var(--ink)!important;transform:translateY(-1px)!important}
-.mob-btn{display:none;background:none;border:none;cursor:pointer;color:var(--black);padding:4px}
-.hbg{display:flex;flex-direction:column;gap:5px}
-.hbg span{width:22px;height:1.5px;background:currentColor;border-radius:1px;display:block;transition:.3s}
-.mob-menu{display:none;position:fixed;inset:0;z-index:99;background:var(--white);flex-direction:column;align-items:center;justify-content:center;gap:36px}
-.mob-menu.open{display:flex}
-.mob-menu a{font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--black);transition:color .2s}
-.mob-menu a:hover{color:var(--rose-deep)}
-.mob-close{position:absolute;top:24px;right:32px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--ink-light)}
-
-/* ═══════════════════════════════════
-   HERO — DARK CINEMATIC
-═══════════════════════════════════ */
-#hero{
-  min-height:100svh;display:flex;align-items:center;
-  padding:100px 0 80px;background:var(--deep);
-  overflow:hidden;position:relative;
-}
-/* ghosted giant text decoration */
-#hero::before{
-  content:'NIA';position:absolute;right:-2%;top:50%;transform:translateY(-50%);
-  font-family:var(--fd);font-size:clamp(20rem,28vw,36rem);font-weight:600;line-height:1;
-  color:rgba(255,255,255,.018);pointer-events:none;letter-spacing:-.02em;user-select:none;
-}
-.hero-in{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:72px;position:relative;z-index:1}
-.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:26px;animation:fadeIn .8s ease both}
-.hero-eyebrow-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);animation:pulse 2.5s infinite}
-.hero-eyebrow span{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,249,247,.4)}
-.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(212,165,160,.12);border:1px solid rgba(212,165,160,.2);color:var(--rose);font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:20px;animation:fadeIn .8s .05s ease both}
-h1.hero-h1{animation:fadeUp .9s .1s ease both;margin-bottom:26px}
-.hero-sub{font-size:1rem;color:rgba(250,249,247,.5);line-height:1.78;max-width:420px;margin-bottom:38px;animation:fadeUp .9s .2s ease both}
-.hero-sub strong{color:rgba(250,249,247,.8);font-weight:400}
-.hero-acts{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .9s .3s ease both}
-.hero-cred{margin-top:50px;padding-top:32px;border-top:1px solid rgba(255,255,255,.08);animation:fadeUp .9s .4s ease both}
-.cred-card{display:inline-flex;align-items:center;gap:14px}
-.cred-av{width:44px;height:44px;border-radius:50%;background:rgba(212,165,160,.15);border:1px solid rgba(212,165,160,.25);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:500;font-size:.95rem;color:var(--rose);flex-shrink:0}
-.cred-name{font-weight:500;font-size:.86rem;color:rgba(250,249,247,.85);letter-spacing:.01em}
-.cred-title{font-size:.7rem;color:rgba(250,249,247,.35);letter-spacing:.04em;font-weight:400}
-.cred-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(212,165,160,.12);border:1px solid rgba(212,165,160,.2);color:var(--rose);font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-top:4px}
-
-/* Hero right — large mark + floating panels */
-.hero-right{position:relative;display:flex;align-items:center;justify-content:center;animation:fadeIn 1s .3s ease both;min-height:480px}
-.hero-mark-wrap{position:relative;display:flex;align-items:center;justify-content:center}
-.hero-mark{width:260px;height:260px;animation:float 6s ease-in-out infinite}
-.float-card{position:absolute;background:rgba(250,249,247,.05);backdrop-filter:blur(12px);border:1px solid rgba(250,249,247,.1);border-radius:var(--r);padding:16px 20px}
-.fc-tl{top:0;left:-20px;animation:float 5s .5s ease-in-out infinite}
-.fc-br{bottom:20px;right:-10px;animation:float 5.5s 1s ease-in-out infinite}
-.fc-label{font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(212,165,160,.65);margin-bottom:4px}
-.fc-val{font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--white);line-height:1;letter-spacing:-.02em}
-.fc-val small{font-size:.75rem;font-family:var(--fb);font-weight:400;color:rgba(250,249,247,.4)}
-.fc-tag{display:inline-block;font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:20px;margin-top:6px;background:rgba(212,165,160,.15);color:var(--rose)}
-.hero-pill-col{display:flex;flex-direction:column;gap:8px;margin-top:14px}
-.h-pill{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 16px;background:rgba(250,249,247,.04);border:1px solid rgba(250,249,247,.08);border-radius:var(--rs);transition:.25s}
-.h-pill:hover{background:rgba(250,249,247,.08);border-color:rgba(212,165,160,.3)}
-.hp-name{font-size:.82rem;font-weight:400;color:rgba(250,249,247,.75)}
-.hp-price{font-family:var(--fd);font-size:.95rem;font-weight:500;color:var(--rose)}
-.hp-time{font-size:.62rem;color:rgba(250,249,247,.3)}
-
-/* ═══════════════════════════════════
-   MARQUEE
-═══════════════════════════════════ */
-.mq{background:var(--black);padding:13px 0;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
-.mq-track{display:inline-flex;animation:marq 30s linear infinite}
-.mq-item{display:inline-flex;align-items:center;gap:18px;font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:0 28px;color:rgba(250,249,247,.5)}
-.mq-item .s{color:var(--rose);font-size:.85rem}
-
-/* ═══════════════════════════════════
-   STATS STRIP
-═══════════════════════════════════ */
-#stats{padding:72px 0;background:var(--off);border-bottom:1px solid var(--border)}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
-.stat-cell{background:var(--off);padding:36px 32px;text-align:center}
-.stat-num{font-family:var(--fd);font-size:clamp(2.2rem,3.5vw,3.2rem);font-weight:300;color:var(--black);letter-spacing:-.03em;line-height:1;margin-bottom:6px}
-.stat-num span{color:var(--rose-deep)}
-.stat-lbl{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
-
-/* ═══════════════════════════════════
-   PAIN
-═══════════════════════════════════ */
-#pain{padding:110px 0;background:var(--white)}
-.pain-head{margin-bottom:56px}
-.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
-.pain-cell{background:var(--white);padding:44px 38px;transition:background .3s,transform .3s;position:relative;overflow:hidden}
-.pain-cell::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--rose);transform:scaleX(0);transform-origin:left;transition:.4s}
-.pain-cell:hover{background:var(--rose-faint)}
-.pain-cell:hover::before{transform:scaleX(1)}
-.pain-num{font-family:var(--fd);font-size:4rem;font-weight:300;color:var(--rose-pale);line-height:1;margin-bottom:22px;letter-spacing:-.03em}
-.pain-cell h3{font-size:1.05rem;margin-bottom:10px;line-height:1.35}
-.pain-cell p{font-size:.86rem;line-height:1.72;color:var(--ink-light)}
-
-/* ═══════════════════════════════════
-   SERVICES / PRICING
-═══════════════════════════════════ */
-#services{padding:110px 0;background:var(--off)}
-.srv-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:52px;flex-wrap:wrap}
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
-.p-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:36px 32px;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden}
-.p-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .3s}
-.p-card:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
-.p-card:hover::after{background:var(--rose)}
-.p-card.feat{border-color:var(--rose)}
-.p-card.feat::after{background:var(--rose)}
-.feat-badge{position:absolute;top:18px;right:18px;background:var(--rose-faint);color:var(--rose-deep);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid var(--rose-pale)}
-.p-icon{font-size:1.5rem;margin-bottom:18px}
-.p-name{font-family:var(--fd);font-size:1.4rem;font-weight:500;color:var(--black);margin-bottom:6px}
-.p-desc{font-size:.82rem;color:var(--ink-faint);margin-bottom:26px;line-height:1.6}
-.p-amt{margin-bottom:26px;padding-bottom:26px;border-bottom:1px solid var(--border)}
-.p-from{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint);font-weight:500}
-.p-num{font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--black);letter-spacing:-.02em;line-height:1.1}
-.p-unit{font-size:.72rem;color:var(--ink-faint);font-weight:400}
-.p-feats{flex:1;display:flex;flex-direction:column;gap:9px;margin-bottom:26px}
-.p-feat{display:flex;align-items:flex-start;gap:10px;font-size:.81rem;color:var(--ink-light)}
-.p-ck{width:16px;height:16px;border-radius:50%;background:var(--rose-faint);border:1px solid var(--rose-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:.52rem;color:var(--rose-deep)}
-.btn-card{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;border-radius:var(--rs);font-family:var(--fb);font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.25s;border:1px solid var(--border);background:transparent;color:var(--ink)}
-.btn-card:hover{background:var(--off);border-color:var(--black);color:var(--black)}
-.btn-card.pri{background:var(--black);color:var(--white);border-color:var(--black)}
-.btn-card.pri:hover{background:var(--ink)}
-/* addon */
-.addon{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:32px;display:flex;align-items:center;justify-content:space-between;gap:32px;transition:border-color .3s}
-.addon:hover{border-color:var(--rose)}
-.addon-inf h3{margin-bottom:8px}
-.addon-inf p{font-size:.85rem;color:var(--ink-light);line-height:1.7;max-width:440px}
-.addon-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.addon-tag{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:var(--off);border:1px solid var(--border);color:var(--ink-light)}
-.addon-price{text-align:right;flex-shrink:0}
-.addon-price .fr{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint)}
-.addon-price .am{font-family:var(--fd);font-size:2.4rem;font-weight:300;color:var(--black);letter-spacing:-.02em;line-height:1.1}
-.addon-price .per{font-size:.7rem;color:var(--ink-faint)}
-
-/* ═══════════════════════════════════
-   PROCESS — 6 PASOS (dark section)
-═══════════════════════════════════ */
-#process{padding:110px 0;background:var(--deep);position:relative;overflow:hidden}
-#process::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.014) 0px,rgba(255,255,255,.014) 1px,transparent 1px,transparent 72px);pointer-events:none}
-.proc-head{margin-bottom:72px;text-align:center}
-.proc-head h2{color:var(--white)}
-.proc-head h2 em{color:var(--rose)}
-.proc-head p{color:rgba(250,249,247,.45);max-width:480px;margin:14px auto 0;font-size:.92rem;line-height:1.75}
-.proc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);border-radius:var(--r);overflow:hidden}
-.proc-step{padding:44px 36px;background:rgba(255,255,255,.01);transition:background .3s;position:relative}
-.proc-step:hover{background:rgba(212,165,160,.05)}
-.proc-n{font-family:var(--fd);font-size:3.8rem;font-weight:300;color:rgba(212,165,160,.2);line-height:1;letter-spacing:-.02em;margin-bottom:20px;transition:color .3s}
-.proc-step:hover .proc-n{color:rgba(212,165,160,.5)}
-.proc-step h3{font-size:1.05rem;color:var(--white);margin-bottom:10px;font-weight:500}
-.proc-step p{font-size:.84rem;color:rgba(250,249,247,.45);line-height:1.7}
-.proc-dot{position:absolute;top:36px;right:36px;width:8px;height:8px;border-radius:50%;background:var(--rose);opacity:.4}
-
-/* ═══════════════════════════════════
-   WHY NIA
-═══════════════════════════════════ */
-#why{padding:110px 0;background:var(--white)}
-.why-lay{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.why-sticky{position:sticky;top:100px}
-.why-list{display:flex;flex-direction:column;margin-top:52px}
-.why-item{display:grid;grid-template-columns:56px 1fr;gap:0;padding:26px 0;border-bottom:1px solid var(--border)}
-.why-item:first-child{border-top:1px solid var(--border)}
-.why-n{font-family:var(--fd);font-size:.85rem;font-weight:400;color:var(--rose);padding-top:2px;letter-spacing:.04em}
-.why-t h4{font-family:var(--fb);font-weight:600;font-size:.9rem;color:var(--black);margin-bottom:5px;letter-spacing:.01em}
-.why-t p{font-size:.83rem;color:var(--ink-light);line-height:1.68}
-/* profile card */
-.prof{background:var(--off);border:1px solid var(--border);border-radius:var(--r);padding:34px;margin-top:36px}
-.prof-top{display:flex;align-items:center;gap:16px;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--border)}
-.prof-av{width:54px;height:54px;border-radius:50%;background:var(--rose-pale);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:500;font-size:1.15rem;color:var(--rose-deep);flex-shrink:0}
-.prof-name{font-family:var(--fd);font-weight:500;font-size:1.12rem;color:var(--black);margin-bottom:2px}
-.prof-role{font-size:.68rem;color:var(--ink-faint);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
-.prof-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
-.pst{background:var(--white);border:1px solid var(--border);border-radius:var(--rs);padding:14px}
-.pst-v{font-family:var(--fd);font-size:1.75rem;font-weight:300;color:var(--black);letter-spacing:-.02em;line-height:1}
-.pst-l{font-size:.63rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
-.chips{display:flex;flex-wrap:wrap;gap:7px}
-.chip{font-size:.63rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 11px;border-radius:20px;background:var(--white);border:1px solid var(--border);color:var(--ink-light);transition:.2s;cursor:default}
-.chip:hover{border-color:var(--rose);color:var(--rose-deep)}
-.chip.rose{background:var(--rose-faint);border-color:var(--rose-pale);color:var(--rose-deep)}
-
-/* ═══════════════════════════════════
-   PORTFOLIO
-═══════════════════════════════════ */
-#portfolio{padding:110px 0;background:var(--off)}
-.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
-.port-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:box-shadow .3s,transform .3s}
-.port-card:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
-.port-thumb{aspect-ratio:4/3;background:var(--off2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-/* mock browser window */
-.mock{width:82%;height:80%;background:var(--white);border-radius:6px;border:1px solid var(--border);box-shadow:var(--sh1);display:flex;flex-direction:column;overflow:hidden}
-.mock-bar{height:18px;background:var(--off);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 8px;gap:4px;flex-shrink:0}
-.mock-dot{width:4px;height:4px;border-radius:50%;background:var(--border-dark)}
-.mock-body{flex:1;padding:8px;display:flex;flex-direction:column;gap:4px}
-.mock-h{height:20px;border-radius:3px;margin-bottom:3px}
-.mock-r{display:flex;gap:4px}
-.mock-b{height:7px;border-radius:2px;flex:1}
-.rose-b{background:var(--rose-pale)}
-.gray-b{background:var(--off2)}
-.dk-b{background:var(--border-dark)}
-.sage-b{background:rgba(138,171,166,.3)}
-.port-ov{position:absolute;inset:0;background:rgba(17,16,16,.78);display:flex;align-items:center;justify-content:center;opacity:0;transition:.25s}
-.port-card:hover .port-ov{opacity:1}
-.port-ov-btn{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.35);padding:10px 20px;border-radius:var(--rs);transition:.2s}
-.port-ov-btn:hover{background:rgba(255,255,255,.1)}
-.port-info{padding:22px 24px}
-.port-type{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:5px}
-.port-info h3{font-size:.98rem;margin-bottom:3px}
-.port-info p{font-size:.78rem;color:var(--ink-faint)}
-.port-coming{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;padding:20px;text-align:center}
-.port-coming .ico{font-size:1.8rem;opacity:.3}
-.port-coming span{font-size:.7rem;color:var(--ink-faint);letter-spacing:.08em;text-transform:uppercase}
-
-/* ═══════════════════════════════════
-   FAQ
-═══════════════════════════════════ */
-#faq{padding:110px 0;background:var(--white)}
-.faq-lay{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
-.faq-left{position:sticky;top:100px}
-.faq-list{display:flex;flex-direction:column}
-.faq-item{border-bottom:1px solid var(--border)}
-.faq-item:first-child{border-top:1px solid var(--border)}
-.faq-q{display:flex;justify-content:space-between;align-items:center;padding:22px 0;cursor:pointer;gap:14px;font-weight:500;font-size:.9rem;color:var(--black);transition:color .2s;user-select:none}
-.faq-q:hover{color:var(--rose-deep)}
-.faq-ico{width:24px;height:24px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--ink-faint);flex-shrink:0;transition:.3s}
-.faq-item.open .faq-ico{transform:rotate(45deg);border-color:var(--rose);color:var(--rose-deep);background:var(--rose-faint)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s;font-size:.85rem;color:var(--ink-light);line-height:1.75;padding:0}
-.faq-item.open .faq-a{max-height:240px;padding-bottom:20px}
-
-/* ═══════════════════════════════════
-   CTA FINAL — split layout
-═══════════════════════════════════ */
-#cta{padding:0;background:var(--deep);overflow:hidden}
-.cta-in{display:grid;grid-template-columns:1fr 1fr;min-height:480px}
-.cta-left{padding:90px 64px 90px 0;display:flex;flex-direction:column;justify-content:center}
-.cta-right{background:rgba(212,165,160,.06);border-left:1px solid rgba(212,165,160,.15);padding:90px 0 90px 64px;display:flex;flex-direction:column;justify-content:center}
-.cta-left .label{color:rgba(212,165,160,.6)}
-.cta-left h2{color:var(--white);margin-bottom:14px}
-.cta-left h2 em{color:var(--rose)}
-.cta-left p{color:rgba(250,249,247,.45);font-size:.92rem;line-height:1.75;margin-bottom:36px;max-width:380px}
-.cta-acts{display:flex;gap:12px;flex-wrap:wrap}
-.cta-contact{display:flex;flex-direction:column;gap:16px}
-.cc-item{display:flex;align-items:center;gap:12px;padding:16px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);transition:.25s}
-.cc-item:hover{background:rgba(255,255,255,.08);border-color:rgba(212,165,160,.25)}
-.cc-icon{width:36px;height:36px;border-radius:8px;background:rgba(212,165,160,.12);border:1px solid rgba(212,165,160,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.cc-icon svg{width:16px;height:16px;color:var(--rose)}
-.cc-lbl{font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,249,247,.35);line-height:1}
-.cc-val{font-size:.88rem;font-weight:400;color:rgba(250,249,247,.8);margin-top:2px}
-.trust-row{display:flex;flex-direction:column;gap:10px;margin-top:28px;padding-top:28px;border-top:1px solid rgba(255,255,255,.07)}
-.tr-item{display:flex;align-items:center;gap:8px;font-size:.72rem;color:rgba(250,249,247,.35);letter-spacing:.05em;text-transform:uppercase}
-.tr-item::before{content:'✓';color:var(--rose);font-size:.7rem}
-
-/* ═══════════════════════════════════
-   FOOTER
-═══════════════════════════════════ */
-footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 28px}
-.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
-.foot-brand p{font-size:.82rem;color:var(--ink-faint);line-height:1.75;max-width:240px;margin-top:12px}
-.foot-brand .cb{margin-top:14px}
-.foot-col h5{font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-light);margin-bottom:16px}
-.foot-col ul{display:flex;flex-direction:column;gap:10px}
-.foot-col li a{font-size:.82rem;color:var(--ink-faint);transition:color .2s}
-.foot-col li a:hover{color:var(--rose-deep)}
-.foot-bot{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
-.foot-bot p{font-size:.73rem;color:var(--ink-faint)}
-/* footer logo */
-.foot-logo{display:flex;align-items:center;gap:9px;margin-bottom:4px}
-.foot-logo .wm{font-family:var(--fd);font-weight:400;font-size:1.2rem;letter-spacing:.04em;color:var(--black)}
-.foot-logo .dot{color:var(--rose-deep)}
-
-/* ═══════════════════════════════════
-   WHATSAPP FLOAT
-═══════════════════════════════════ */
-.wa{position:fixed;bottom:28px;right:28px;z-index:200;width:54px;height:54px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .25s,box-shadow .25s;animation:float 4s ease-in-out infinite}
-.wa:hover{transform:scale(1.09);box-shadow:0 8px 28px rgba(37,211,102,.55)}
-.wa svg{width:26px;height:26px}
-.wa-tip{position:absolute;right:62px;white-space:nowrap;background:var(--black);color:var(--white);font-size:.7rem;font-weight:600;letter-spacing:.04em;padding:6px 12px;border-radius:var(--rs);opacity:0;transform:translateX(6px);transition:.2s;pointer-events:none}
-.wa:hover .wa-tip{opacity:1;transform:translateX(0)}
-
-/* ═══════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════ */
-@media(max-width:960px){
-  .hero-in{grid-template-columns:1fr}
-  .hero-right{display:none}
-  .pain-grid{grid-template-columns:1fr}
-  .price-grid{grid-template-columns:1fr}
-  .proc-grid{grid-template-columns:1fr 1fr}
-  .why-lay{grid-template-columns:1fr}
-  .why-sticky{position:static}
-  .port-grid{grid-template-columns:1fr 1fr}
-  .faq-lay{grid-template-columns:1fr}
-  .faq-left{position:static}
-  .cta-in{grid-template-columns:1fr}
-  .cta-right{display:none}
-  .cta-left{padding:80px 0}
-  .foot-grid{grid-template-columns:1fr 1fr}
-  .stats-grid{grid-template-columns:1fr 1fr}
-  .addon{flex-direction:column}
-  .addon-price{text-align:left}
-  .nav-links{display:none}
-  .mob-btn{display:flex}
-}
-@media(max-width:600px){
-  .container{padding:0 20px}
-  h1{font-size:2.7rem}
-  h2{font-size:2rem}
-  .proc-grid{grid-template-columns:1fr}
-  .port-grid{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr}
-  .hero-acts{flex-direction:column}
-  .btn-dark,.btn-outline,.btn-rose,.btn-inv{width:100%;justify-content:center}
-  .pain-grid{gap:0}
-  .cta-acts{flex-direction:column;align-items:flex-start}
-  .stats-grid{grid-template-columns:1fr 1fr}
-}
-</style>
+<link rel="stylesheet" href="css/styles.css"/>
 </head>
-<body>
+<body class="is-loading">
 
-<!-- ╔══════════════════════════════╗ -->
-<!-- ║           NAV                ║ -->
-<!-- ╚══════════════════════════════╝ -->
+<div id="preloader" aria-hidden="true">
+  <div class="preloader-inner">
+    <svg class="preloader-mark" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M26,4 A22,22 0 1,1 8,37" stroke="rgba(250,249,247,0.85)" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <circle cx="8" cy="37" r="4.5" fill="#d4a5a0"/>
+      <circle cx="26" cy="4" r="3" fill="rgba(250,249,247,0.9)"/>
+    </svg>
+    <div class="preloader-wm">NIA<span class="dot">.</span>cl</div>
+  </div>
+</div>
+
+
 <nav id="main-nav">
   <div class="container nav-in">
     <!-- Logo: SVG mark + wordmark -->
@@ -438,9 +41,9 @@ footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 2
 
     <ul class="nav-links">
       <li><a href="#services">Servicios</a></li>
-      <li><a href="#process">Proceso</a></li>
-      <li><a href="#why">Nosotros</a></li>
+      <li><a href="#portfolio">Portafolio</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="#cta">Contacto</a></li>
       <li><a href="https://wa.me/56945542404?text=Hola%20NIA.cl!%20Quiero%20cotizar" target="_blank" class="nav-cta">Cotizar →</a></li>
     </ul>
     <button class="mob-btn" onclick="document.getElementById('mm').classList.toggle('open')" aria-label="Menú">
@@ -453,20 +56,23 @@ footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 2
 <div class="mob-menu" id="mm">
   <button class="mob-close" onclick="document.getElementById('mm').classList.remove('open')">✕</button>
   <a href="#services" onclick="document.getElementById('mm').classList.remove('open')">Servicios</a>
+  <a href="#portfolio" onclick="document.getElementById('mm').classList.remove('open')">Portafolio</a>
   <a href="#process" onclick="document.getElementById('mm').classList.remove('open')">Proceso</a>
   <a href="#why" onclick="document.getElementById('mm').classList.remove('open')">Nosotros</a>
   <a href="#faq" onclick="document.getElementById('mm').classList.remove('open')">FAQ</a>
-  <a href="https://wa.me/56945542404?text=Hola%20NIA.cl!%20Quiero%20cotizar" target="_blank" style="color:var(--rose)">WhatsApp →</a>
+  <a href="#cta" onclick="document.getElementById('mm').classList.remove('open')">Contacto</a>
+  <a href="https://wa.me/56945542404?text=Hola%20NIA.cl!%20Quiero%20cotizar" target="_blank" style="color:var(--rose-deep)">WhatsApp →</a>
 </div>
 
-<!-- ╔══════════════════════════════╗ -->
-<!-- ║   HERO — DARK + DRAMATIC     ║ -->
-<!-- ╚══════════════════════════════╝ -->
 <section id="hero">
+  <div class="blob-field" aria-hidden="true">
+    <div class="blob blob-rose" style="width:420px;height:420px;top:-100px;left:6%"></div>
+    <div class="blob blob-sage" style="width:340px;height:340px;bottom:-120px;right:8%"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-in">
 
-      <!-- Left: copy + CTA -->
       <div>
         <div class="hero-eyebrow">
           <div class="hero-eyebrow-dot"></div>
@@ -487,7 +93,7 @@ footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 2
           <strong>Respaldo real de Ingeniería Informática.</strong>
         </p>
         <div class="hero-acts">
-          <a href="https://wa.me/56945542404?text=Hola%20NIA.cl!%20Quiero%20cotizar%20una%20web%20para%20mi%20negocio" target="_blank" class="btn btn-inv">
+          <a href="https://wa.me/56945542404?text=Hola%20NIA.cl!%20Quiero%20cotizar%20una%20web%20para%20mi%20negocio" target="_blank" class="btn btn-inv magnetic">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.123 1.528 5.854L0 24l6.335-1.617C8.024 23.43 9.966 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.883 0-3.636-.497-5.15-1.361l-.369-.219-3.759.959.991-3.661-.24-.38C2.47 15.707 2 13.916 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
             Cotizar por WhatsApp
           </a>
@@ -544,35 +150,29 @@ footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 2
   </div>
 </div>
 
-<!-- ╔══════════════════════════════╗ -->
-<!-- ║   STATS STRIP (new)          ║ -->
-<!-- ╚══════════════════════════════╝ -->
 <section id="stats">
   <div class="container">
     <div class="stats-grid reveal">
       <div class="stat-cell">
-        <div class="stat-num">3<span>+</span></div>
+        <div class="stat-num"><span class="cnt" data-target="3">0</span><span>+</span></div>
         <div class="stat-lbl">Años en desarrollo web</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-num"><span class="cnt" data-target="100">0</span><span>%</span></div>
         <div class="stat-lbl">Proyectos entregados a tiempo</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-num">&lt;24<span>h</span></div>
+        <div class="stat-num">&lt;<span class="cnt" data-target="24">0</span><span>h</span></div>
         <div class="stat-lbl">Tiempo máximo de respuesta</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-num">3<span>+</span></div>
+        <div class="stat-num"><span class="cnt" data-target="3">0</span><span>+</span></div>
         <div class="stat-lbl">Medios de pago integrados</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ╔══════════════════════════════╗ -->
-<!-- ║   PAIN                       ║ -->
-<!-- ╚══════════════════════════════╝ -->
 <section id="pain">
   <div class="container">
     <div class="pain-head">
@@ -599,9 +199,6 @@ footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 2
   </div>
 </section>
 
-<!-- ╔══════════════════════════════╗ -->
-<!-- ║   SERVICES / PRICING         ║ -->
-<!-- ╚══════════════════════════════╝ -->
 <section id="services">
   <div class="container">
     <div class="srv-head">
@@ -697,9 +294,7 @@ footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 2
   </div>
 </section>
 
-<!-- ╔══════════════════════════════╗ -->
-<!-- ║   PROCESO — 6 PASOS (new)    ║ -->
-<!-- ╚══════════════════════════════╝ -->
+
 <section id="process">
   <div class="container">
     <div class="proc-head reveal">
@@ -749,9 +344,6 @@ footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 2
   </div>
 </section>
 
-<!-- ╔══════════════════════════════╗ -->
-<!-- ║   WHY NIA                    ║ -->
-<!-- ╚══════════════════════════════╝ -->
 <section id="why">
   <div class="container">
     <div class="why-lay">
@@ -826,58 +418,65 @@ footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 2
   </div>
 </section>
 
-<!-- ╔══════════════════════════════╗ -->
-<!-- ║   PORTFOLIO                  ║ -->
-<!-- ╚══════════════════════════════╝ -->
 <section id="portfolio">
   <div class="container">
     <span class="label reveal">Portafolio</span>
     <h2 class="reveal">Proyectos recientes</h2>
-    <p class="reveal" style="margin-top:12px;max-width:480px;font-size:.9rem;color:var(--ink-light)">Cada web que entregamos está optimizada para vender. Algunos ejemplos del trabajo que hacemos.</p>
+    <p class="reveal" style="margin-top:12px;max-width:480px;font-size:.9rem;color:var(--ink-light)">Cada web que entregamos está optimizada para vender. Esto es una vista en vivo del trabajo real — no maquetas.</p>
 
     <div class="port-grid">
-      <!-- Project 1 -->
-      <div class="port-card reveal">
+      <!-- Project 1: Saint Henry School -->
+      <a href="portfolio/saint-henry.html" target="_blank" rel="noopener" class="port-card reveal" style="text-decoration:none">
         <div class="port-thumb">
-          <div class="mock">
-            <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
-            <div class="mock-body">
-              <div class="mock-h rose-b"></div>
-              <div class="mock-r"><div class="mock-b gray-b"></div><div class="mock-b gray-b"></div></div>
-              <div class="mock-r"><div class="mock-b rose-b" style="flex:2"></div></div>
-              <div class="mock-r"><div class="mock-b gray-b"></div><div class="mock-b gray-b"></div><div class="mock-b gray-b"></div></div>
-              <div class="mock-r"><div class="mock-b dk-b" style="flex:1.5"></div></div>
-            </div>
-          </div>
-          <div class="port-ov"><span class="port-ov-btn">Ver proyecto →</span></div>
+          <iframe src="portfolio/saint-henry.html" title="Preview Saint Henry School" loading="lazy" tabindex="-1"></iframe>
+          <div class="port-ov"><span class="port-ov-btn">Ver proyecto en vivo →</span></div>
         </div>
         <div class="port-info">
-          <div class="port-type">Landing informativa/Formulario de contacto</div>
-          <h3>Saint Henry School</h3>
-          <p>Escuela de Santiago</p>
-        </div>
-      </div>
-      <!-- Project 2 -->
-      <div class="port-card reveal">
-        <div class="port-thumb" style="background:var(--black)">
-          <div class="mock" style="background:var(--ink)">
-            <div class="mock-bar" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)"><div class="mock-dot" style="background:rgba(255,255,255,.2)"></div><div class="mock-dot" style="background:rgba(255,255,255,.2)"></div><div class="mock-dot" style="background:rgba(255,255,255,.2)"></div></div>
-            <div class="mock-body">
-              <div class="mock-h" style="background:rgba(250,249,247,.08)"></div>
-              <div class="mock-r"><div class="mock-b" style="background:rgba(212,165,160,.3);flex:1"></div><div class="mock-b" style="background:rgba(255,255,255,.05)"></div></div>
-              <div class="mock-r"><div class="mock-b" style="background:rgba(255,255,255,.05)"></div><div class="mock-b" style="background:rgba(255,255,255,.05)"></div></div>
-              <div class="mock-r"><div class="mock-b" style="background:rgba(212,165,160,.2)"></div></div>
-            </div>
+          <div>
+            <div class="port-type">Landing informativa · Formulario de contacto</div>
+            <h3>Saint Henry School</h3>
+            <p>Escuela de Santiago Centro</p>
           </div>
-          <div class="port-ov"><span class="port-ov-btn">Ver proyecto →</span></div>
+          <div class="port-visit" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </div>
+        </div>
+      </a>
+      <!-- Project 2: Transport Service -->
+      <a href="portfolio/transport-service.html" target="_blank" rel="noopener" class="port-card reveal" style="text-decoration:none">
+        <div class="port-thumb">
+          <iframe src="portfolio/transport-service.html" title="Preview Transport Service" loading="lazy" tabindex="-1"></iframe>
+          <div class="port-ov"><span class="port-ov-btn">Ver proyecto en vivo →</span></div>
         </div>
         <div class="port-info">
-          <div class="port-type">Web Corporativa</div>
-          <h3>Transport Service</h3>
-          <p>Presencia digital con agenda de viajes y servicios</p>
+          <div>
+            <div class="port-type">Web Corporativa · Transporte</div>
+            <h3>Transport Service</h3>
+            <p>Traslados aeropuerto, Santiago</p>
+          </div>
+          <div class="port-visit" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </div>
         </div>
-      </div>
-      <!-- Project 3: placeholder -->
+      </a>
+      <!-- Project 3: Óptica Llifén -->
+      <a href="portfolio/optica-llifen.html" target="_blank" rel="noopener" class="port-card reveal" style="text-decoration:none">
+        <div class="port-thumb">
+          <iframe src="portfolio/optica-llifen.html" title="Preview Óptica Llifén" loading="lazy" tabindex="-1"></iframe>
+          <div class="port-ov"><span class="port-ov-btn">Ver proyecto en vivo →</span></div>
+        </div>
+        <div class="port-info">
+          <div>
+            <div class="port-type">E-commerce · Agenda de horas</div>
+            <h3>Óptica Llifén</h3>
+            <p>Óptica en Cerrillos y San Bernardo</p>
+          </div>
+          <div class="port-visit" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </div>
+        </div>
+      </a>
+      <!-- Project 4: placeholder -->
       <div class="port-card reveal" style="border-style:dashed">
         <div class="port-thumb" style="background:var(--off)">
           <div class="port-coming">
@@ -887,18 +486,17 @@ footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 2
           </div>
         </div>
         <div class="port-info">
-          <div class="port-type" style="color:var(--ink-faint)">Próximamente</div>
-          <h3 style="color:var(--ink-light)">¿Tu negocio?</h3>
-          <p>Hagamos tu proyecto realidad juntos</p>
+          <div>
+            <div class="port-type" style="color:var(--ink-faint)">Próximamente</div>
+            <h3 style="color:var(--ink-light)">¿Tu negocio?</h3>
+            <p>Hagamos tu proyecto realidad juntos</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ╔══════════════════════════════╗ -->
-<!-- ║   FAQ                        ║ -->
-<!-- ╚══════════════════════════════╝ -->
 <section id="faq">
   <div class="container">
     <div class="faq-lay">
@@ -945,11 +543,13 @@ footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 2
   </div>
 </section>
 
-<!-- ╔══════════════════════════════╗ -->
-<!-- ║   CTA FINAL — split dark     ║ -->
-<!-- ╚══════════════════════════════╝ -->
 <section id="cta">
-  <div class="container" style="padding:0">
+  <div class="blob-field" aria-hidden="true">
+    <div class="blob blob-rose" style="width:360px;height:360px;top:-80px;right:15%"></div>
+    <div class="blob blob-sage" style="width:280px;height:280px;bottom:-100px;left:10%"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="container">
     <div class="cta-in">
       <div class="cta-left reveal">
         <span class="label inv">Empieza hoy</span>
@@ -969,8 +569,58 @@ footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 2
         </div>
       </div>
       <div class="cta-right reveal">
-        <span class="label inv" style="margin-bottom:20px">Contáctanos directamente</span>
-        <div class="cta-contact">
+        <span class="label inv" style="margin-bottom:16px">Cuéntanos tu proyecto</span>
+
+        <form id="niaContactForm" class="contact-form" action="https://formspree.io/f/TU_FORM_ID" method="POST" novalidate>
+          <!-- Honeypot anti-spam: invisible para personas, los bots lo completan -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="cfHoneypot">No completar este campo</label>
+            <input type="text" id="cfHoneypot" name="_gotcha" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="cf-row">
+            <div class="cf-field">
+              <label for="cfName">Nombre</label>
+              <input type="text" id="cfName" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
+            </div>
+            <div class="cf-field">
+              <label for="cfBiz">Negocio</label>
+              <input type="text" id="cfBiz" name="negocio" placeholder="Nombre de tu negocio" autocomplete="organization">
+            </div>
+          </div>
+          <div class="cf-row">
+            <div class="cf-field">
+              <label for="cfContact">Correo o WhatsApp</label>
+              <input type="text" id="cfContact" name="contacto" placeholder="tucorreo@mail.com o +56 9 1234 5678" autocomplete="email" required>
+            </div>
+            <div class="cf-field">
+              <label for="cfBudget">Presupuesto</label>
+              <select id="cfBudget" name="presupuesto">
+                <option value="">Aún no lo sé</option>
+                <option>Hasta $150.000</option>
+                <option>$150.000 – $400.000</option>
+                <option>$400.000 – $800.000</option>
+                <option>Más de $800.000</option>
+              </select>
+            </div>
+          </div>
+          <div class="cf-field">
+            <label for="cfMsg">Cuéntanos qué necesitas</label>
+            <textarea id="cfMsg" name="mensaje" placeholder="Ej: Necesito una landing page para mi cafetería, con menú y botón de WhatsApp." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-inv cf-submit magnetic">Enviar solicitud →</button>
+          <div class="cf-error" id="cfError">Algo salió mal. Escríbenos directo por WhatsApp o correo.</div>
+          <p class="cf-note">Respondemos en menos de 24 horas.</p>
+        </form>
+
+        <div class="cf-success" id="cfSuccess">
+          <div class="cf-check">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4a5a0" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h3 class="inv" style="font-size:1.25rem;margin-bottom:8px">¡Solicitud enviada!</h3>
+          <p style="color:rgba(250,249,247,.5);font-size:.86rem">Te responderemos por correo o WhatsApp en menos de 24 horas.</p>
+        </div>
+
+        <div class="cta-contact" style="margin-top:26px">
           <a href="https://wa.me/56945542404" target="_blank" class="cc-item" style="text-decoration:none">
             <div class="cc-icon">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:16px;height:16px;color:#d4a5a0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.123 1.528 5.854L0 24l6.335-1.617C8.024 23.43 9.966 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.883 0-3.636-.497-5.15-1.361l-.369-.219-3.759.959.991-3.661-.24-.38C2.47 15.707 2 13.916 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -989,24 +639,12 @@ footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 2
               <div class="cc-val">somos.niacl@gmail.com</div>
             </div>
           </a>
-          <div class="cc-item">
-            <div class="cc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="width:16px;height:16px;color:#d4a5a0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div>
-              <div class="cc-lbl">Ubicación</div>
-              <div class="cc-val">Santiago, Chile</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ╔══════════════════════════════╗ -->
-<!-- ║   FOOTER                     ║ -->
-<!-- ╚══════════════════════════════╝ -->
 <footer>
   <div class="container">
     <div class="foot-grid">
@@ -1067,29 +705,8 @@ footer{background:var(--off);border-top:1px solid var(--border);padding:56px 0 2
   <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.123 1.528 5.854L0 24l6.335-1.617C8.024 23.43 9.966 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.883 0-3.636-.497-5.15-1.361l-.369-.219-3.759.959.991-3.661-.24-.38C2.47 15.707 2 13.916 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
 
-<script>
-// ─── FAQ accordion ───
-function toggleFaq(q) {
-  const item = q.closest('.faq-item');
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
-}
-
-// ─── Scroll reveal ───
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
-}, { threshold: 0.07 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-// ─── Nav background on scroll ───
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('main-nav');
-  if (!nav) return;
-  nav.style.background = window.scrollY > 60
-    ? 'rgba(250,249,247,.97)'
-    : 'rgba(250,249,247,.88)';
-});
-</script>
+<script src="js/loader.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/form.js"></script>
 </body>
 </html>
