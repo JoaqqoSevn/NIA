@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El As Barbería — Ñuñoa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Libre+Franklin:wght@400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="loader" aria-hidden="true">
+  <div class="loader-cards">
+    <div class="loader-card">♠</div>
+    <div class="loader-card">♥</div>
+    <div class="loader-card">♣</div>
+  </div>
+  <div class="loader-text">Repartiendo cartas</div>
+</div>
+
+<div class="suit-drift" aria-hidden="true">
+  <span style="left:5%; animation-duration:14s; animation-delay:0s;">♠</span>
+  <span style="left:18%; animation-duration:19s; animation-delay:2s;">♦</span>
+  <span style="left:32%; animation-duration:16s; animation-delay:5s;">♣</span>
+  <span style="left:48%; animation-duration:21s; animation-delay:1s;">♥</span>
+  <span style="left:63%; animation-duration:15s; animation-delay:4s;">♠</span>
+  <span style="left:77%; animation-duration:18s; animation-delay:3s;">♦</span>
+  <span style="left:90%; animation-duration:17s; animation-delay:6s;">♣</span>
+</div>
+
+<header>
+  <nav>
+    <div class="brand"><span class="suit">♠</span> El As Barbería</div>
+    <ul>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#opiniones">Opiniones</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+    </ul>
+    <a href="#reserva" class="nav-cta">Reservar hora</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <span class="hero-eyebrow">♦ Barbería en Ñuñoa</span>
+    <h1>Tu mejor jugada<br>empieza con un <span>buen corte</span></h1>
+    <p class="lead">Cortes clásicos y modernos, ritual de barba con toallas calientes y una experiencia pensada para que salgas con la carta ganadora. Sin apuros, sin filas eternas.</p>
+    <div class="hero-actions">
+      <a href="#reserva" class="btn-primary">Reservar mi hora →</a>
+      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+    </div>
+  </div>
+  <div class="card-stage">
+    <div class="playing-card back-card-1"><div class="back-pattern"></div></div>
+    <div class="playing-card back-card-2"><div class="back-pattern"></div></div>
+    <div class="playing-card ace-card">
+      <div class="ace-corner">A<br><span class="suit">♠</span></div>
+      <div class="ace-center">♠</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="servicios">
+  <div class="section-head deal-in">
+    <span class="tag">La carta de servicios</span>
+    <h2>Elige tu jugada</h2>
+    <p>Cada palo representa un tipo de servicio — así sabes exactamente qué esperar antes de sentarte en la silla.</p>
+  </div>
+  <div class="fan-wrap">
+    <div class="service-card deal-in">
+      <div class="card-flip">
+        <div class="card-face card-front">
+          <div class="service-suit suit-spade">♠</div>
+          <h3>Corte clásico</h3>
+          <p>Tijera y máquina, lavado incluido y peinado final con productos profesionales.</p>
+          <div class="service-price">$12.000</div>
+        </div>
+        <div class="card-face card-back"><span class="card-back-suit">♠</span></div>
+      </div>
+    </div>
+    <div class="service-card deal-in" style="transition-delay:0.08s;">
+      <div class="card-flip">
+        <div class="card-face card-front">
+          <div class="service-suit suit-diamond">♦</div>
+          <h3>Barba + toalla caliente</h3>
+          <p>Perfilado de barba, toallas calientes y aceite hidratante para un acabado prolijo.</p>
+          <div class="service-price">$10.000</div>
+        </div>
+        <div class="card-face card-back"><span class="card-back-suit">♦</span></div>
+      </div>
+    </div>
+    <div class="service-card deal-in" style="transition-delay:0.16s;">
+      <div class="card-flip">
+        <div class="card-face card-front">
+          <div class="service-suit suit-heart">♥</div>
+          <h3>Ritual facial</h3>
+          <p>Limpieza facial, masaje de rostro y hombros. La jugada para relajarte de verdad.</p>
+          <div class="service-price">$14.000</div>
+        </div>
+        <div class="card-face card-back"><span class="card-back-suit">♥</span></div>
+      </div>
+    </div>
+    <div class="service-card deal-in" style="transition-delay:0.24s;">
+      <div class="card-flip">
+        <div class="card-face card-front">
+          <div class="service-suit suit-club">♣</div>
+          <h3>Full house</h3>
+          <p>Corte + barba + ritual facial completo. Nuestra combinación más pedida.</p>
+          <div class="service-price">$29.000</div>
+        </div>
+        <div class="card-face card-back"><span class="card-back-suit">♣</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="galeria">
+  <div class="section-head deal-in">
+    <span class="tag">♠ Nuestro trabajo</span>
+    <h2>Cortes que hablan por sí solos</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item deal-in">
+      <img src="https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?auto=format&fit=crop&w=800&q=80" alt="Corte de pelo clásico en barbería">
+      <div class="gallery-caption">Corte clásico</div>
+    </div>
+    <div class="gallery-item deal-in" style="transition-delay:0.1s;">
+      <img src="https://images.unsplash.com/photo-1770253980732-dfed1cfdfa43?auto=format&fit=crop&w=800&q=80" alt="Barbero cortando con máquina">
+      <div class="gallery-caption">Precisión al detalle</div>
+    </div>
+    <div class="gallery-item deal-in" style="transition-delay:0.2s;">
+      <img src="https://images.unsplash.com/photo-1758812818698-6ecd792a87da?auto=format&fit=crop&w=800&q=80" alt="Ambiente de barbería">
+      <div class="gallery-caption">El As Barbería</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="nosotros">
+  <div class="about">
+    <div class="about-visual deal-in" style="background-image:linear-gradient(180deg, rgba(18,39,32,0.15), rgba(18,39,32,0.85)), url('https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?auto=format&fit=crop&w=900&q=80'); background-size:cover; background-position:center;">
+      <div class="big-suit">♠</div>
+      <div class="quote-chip">"Llegué por un corte y me quedé por el ritual completo. Ambiente único, se nota el detalle en todo."</div>
+    </div>
+    <div class="about-text deal-in">
+      <span class="tag">♣ Sobre nosotros</span>
+      <h2>Barbería con oficio, no una peluquería más</h2>
+      <p>En El As trabajamos con navaja, tijera y toallas calientes como se ha hecho siempre — pero con la comodidad y el orden de un local pensado para que tu hora rinda. Cada corte se conversa antes de empezar: tú decides la jugada.</p>
+      <p>Ambiente relajado, buena música y un equipo que lleva años perfeccionando el detalle que hace la diferencia entre un corte y una buena experiencia.</p>
+      <div class="about-stats">
+        <div class="stat"><b>8+</b><span>Años de oficio</span></div>
+        <div class="stat"><b>4.9</b><span>Valoración promedio</span></div>
+        <div class="stat"><b>2.000+</b><span>Cortes al año</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section testimonials" id="opiniones">
+  <div class="section-head deal-in">
+    <span class="tag">♥ Lo que dicen</span>
+    <h2>Cartas boca arriba</h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card deal-in">
+      <div class="stars">★★★★★</div>
+      <p>"El mejor lavado de cabeza que me han hecho en Santiago. Salgo como nuevo cada vez."</p>
+      <div class="who">— Rodrigo M., cliente frecuente</div>
+    </div>
+    <div class="test-card deal-in" style="transition-delay:0.1s;">
+      <div class="stars">★★★★★</div>
+      <p>"Pedí hora un sábado y me atendieron puntual. El ritual de barba vale cada peso."</p>
+      <div class="who">— Felipe A., Ñuñoa</div>
+    </div>
+    <div class="test-card deal-in" style="transition-delay:0.2s;">
+      <div class="stars">★★★★★</div>
+      <p>"Ambiente increíble, se nota que les gusta lo que hacen. Ya es mi barbería de cabecera."</p>
+      <div class="who">— Ignacio R., Providencia</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ubicacion">
+  <div class="location">
+    <div class="location-info deal-in">
+      <span class="tag" style="display:block; font-family:'Space Mono',monospace; font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-bright); margin-bottom:14px;">♦ Encuéntranos</span>
+      <h3>Metro Ñuñoa, Ñuñoa</h3>
+      <div class="info-line">📍 A pasos del Metro Ñuñoa (Línea 6)</div>
+      <div class="info-line">📞 +56 9 1234 5678</div>
+      <div class="info-line">✉️ hola@elasbarberia.cl</div>
+      <table class="hours-table">
+        <tr><td>Lunes – Jueves</td><td>12:00 – 21:00</td></tr>
+        <tr><td>Viernes</td><td>12:00 – 22:00</td></tr>
+        <tr><td>Sábado</td><td>11:00 – 16:00</td></tr>
+        <tr><td>Domingo</td><td>Cerrado</td></tr>
+      </table>
+    </div>
+    <div class="map-box deal-in" style="transition-delay:0.1s;">
+      <iframe
+        src="https://www.google.com/maps?q=Metro+%C3%91u%C3%B1oa,+%C3%91u%C3%B1oa,+Regi%C3%B3n+Metropolitana,+Chile&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Ubicación El As Barbería cerca de Metro Ñuñoa">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="section final-cta" id="reserva">
+  <h2>¿Listo para tu jugada?</h2>
+  <p>Cupos limitados esta semana. Reserva por WhatsApp o déjanos tus datos y te contactamos.</p>
+  <a href="https://wa.me/56912345678" class="btn-primary">Reservar por WhatsApp →</a>
+
+  <form id="reserva-form" class="reserva-form" novalidate>
+    <div class="form-row">
+      <div class="field-group">
+        <input
+          type="text"
+          name="nombre"
+          placeholder="Tu nombre"
+          autocomplete="name"
+          minlength="2"
+          maxlength="60"
+          pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü' -]+"
+          title="Solo letras y espacios"
+          required>
+        <span class="field-error" data-error-for="nombre"></span>
+      </div>
+      <div class="field-group">
+        <input
+          type="tel"
+          name="telefono"
+          placeholder="Tu teléfono (ej: +56 9 1234 5678)"
+          autocomplete="tel"
+          inputmode="tel"
+          minlength="7"
+          maxlength="20"
+          pattern="^[+]?[0-9 ()-]{7,20}$"
+          title="Solo números, y opcionalmente +, espacios, guiones o paréntesis"
+          required>
+        <span class="field-error" data-error-for="telefono"></span>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field-group">
+        <select name="servicio" required>
+          <option value="" disabled selected>Elige un servicio</option>
+          <option value="Corte clásico">Corte clásico — $12.000</option>
+          <option value="Barba + toalla caliente">Barba + toalla caliente — $10.000</option>
+          <option value="Ritual facial">Ritual facial — $14.000</option>
+          <option value="Full house">Full house — $29.000</option>
+        </select>
+        <span class="field-error" data-error-for="servicio"></span>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field-group" style="width:100%;">
+        <textarea name="mensaje" placeholder="¿Algún día u horario que prefieras? (opcional)" rows="3" maxlength="500"></textarea>
+        <span class="field-error" data-error-for="mensaje"></span>
+      </div>
+    </div>
+    <button type="submit" class="btn-primary">Enviar solicitud</button>
+    <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<footer>
+  <div class="foot-brand">♠ El As Barbería</div>
+  <div>A pasos del Metro Ñuñoa, Santiago · © 2026 Todos los derechos reservados</div>
+  <div class="foot-credit">Desarrollo web por <a href="https://solucionesnia.netlify.app/" target="_blank" rel="noopener">NIA</a></div>
+</footer>
+
+<a href="https://wa.me/56912345678" class="wa-float" aria-label="Escríbenos por WhatsApp">💬</a>
+
+<script src="js/script.js" defer></script>
+
+</body>
+</html>
