@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El As Barbería — Ñuñoa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Libre+Franklin:wght@400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --felt: #1B3A2F;
+    --felt-dark: #122720;
+    --carbon: #14100F;
+    --gold: #C9A227;
+    --gold-bright: #E6C458;
+    --burgundy: #7A2331;
+    --cream: #EFE7D8;
+    --cream-dim: #d9cfba;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--felt);
+    color:var(--cream);
+    font-family:'Libre Franklin', sans-serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* felt texture */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.03) 0, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(255,255,255,0.025) 0, transparent 45%),
+      repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 3px);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .display{
+    font-family:'Rye', serif;
+    letter-spacing:0.02em;
+  }
+
+  .mono{
+    font-family:'Space Mono', monospace;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(20,16,15,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(201,162,39,0.35);
+  }
+  nav{
+    max-width:1200px;
+    margin:0 auto;
+    padding:16px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Rye', serif;
+    font-size:1.4rem;
+    color:var(--gold-bright);
+  }
+  .brand .suit{color:var(--burgundy); font-size:1.1rem;}
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:32px;
+    font-size:0.92rem;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+  }
+  nav ul a{
+    position:relative;
+    padding-bottom:4px;
+    opacity:0.85;
+    transition:opacity 0.2s;
+  }
+  nav ul a:hover{opacity:1;}
+  nav ul a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:0%;
+    height:1px;
+    background:var(--gold);
+    transition:width 0.25s ease;
+  }
+  nav ul a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--burgundy);
+    color:var(--cream);
+    padding:10px 20px;
+    border-radius:2px;
+    font-size:0.85rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    border:1px solid rgba(230,196,88,0.4);
+    transition:transform 0.2s, background 0.2s;
+  }
+  .nav-cta:hover{background:#8f2a3c; transform:translateY(-1px);}
+  .nav-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    max-width:1200px;
+    margin:0 auto;
+    padding:80px 24px 120px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+    z-index:1;
+  }
+  .hero-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--gold-bright);
+    border:1px solid rgba(201,162,39,0.5);
+    padding:6px 14px;
+    border-radius:100px;
+    margin-bottom:24px;
+  }
+  .hero h1{
+    font-family:'Rye', serif;
+    font-size:clamp(2.6rem, 5vw, 4.2rem);
+    line-height:1.08;
+    color:var(--cream);
+    margin-bottom:22px;
+    text-shadow:0 4px 0 rgba(0,0,0,0.25);
+  }
+  .hero h1 span{color:var(--gold-bright);}
+  .hero p.lead{
+    font-size:1.1rem;
+    line-height:1.6;
+    color:var(--cream-dim);
+    max-width:480px;
+    margin-bottom:34px;
+  }
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--gold);
+    color:var(--carbon);
+    font-weight:700;
+    padding:15px 28px;
+    border-radius:2px;
+    font-size:0.95rem;
+    letter-spacing:0.02em;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform 0.2s, box-shadow 0.2s;
+    box-shadow:0 6px 0 #8a6d13;
+  }
+  .btn-primary:hover{transform:translateY(2px); box-shadow:0 4px 0 #8a6d13;}
+  .btn-secondary{
+    border:1px solid rgba(239,231,216,0.4);
+    color:var(--cream);
+    padding:15px 26px;
+    border-radius:2px;
+    font-size:0.95rem;
+    transition:border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover{border-color:var(--gold); background:rgba(201,162,39,0.08);}
+
+  /* the ace card */
+  .card-stage{
+    position:relative;
+    height:460px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .playing-card{
+    position:absolute;
+    width:230px;
+    height:330px;
+    background:var(--cream);
+    border-radius:14px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.45);
+    color:var(--carbon);
+    padding:18px;
+  }
+  .ace-card{
+    z-index:3;
+    transform:rotate(-6deg);
+    animation:drop-in 0.9s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .back-card-1{
+    z-index:1;
+    transform:rotate(14deg) translate(70px,20px);
+    background:var(--burgundy);
+    opacity:0.9;
+  }
+  .back-card-2{
+    z-index:2;
+    transform:rotate(-18deg) translate(-70px,30px);
+    background:var(--felt-dark);
+    border:2px solid var(--gold);
+    opacity:0.95;
+  }
+  @keyframes drop-in{
+    from{ transform:rotate(-25deg) translateY(-60px); opacity:0; }
+    to{ transform:rotate(-6deg) translateY(0); opacity:1; }
+  }
+  .ace-corner{
+    font-family:'Rye', serif;
+    font-size:1.4rem;
+    line-height:1;
+  }
+  .ace-corner .suit{color:var(--carbon); font-family:'Libre Franklin'; font-size:1.1rem;}
+  .ace-center{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:5.5rem;
+  }
+  .back-pattern{
+    position:absolute;
+    inset:14px;
+    border:1.5px solid rgba(230,196,88,0.6);
+    border-radius:8px;
+    background-image:repeating-linear-gradient(45deg, rgba(230,196,88,0.12) 0 6px, transparent 6px 12px);
+  }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section{
+    position:relative;
+    z-index:1;
+    max-width:1200px;
+    margin:0 auto;
+    padding:100px 24px;
+  }
+  .section-head{
+    text-align:center;
+    margin-bottom:60px;
+  }
+  .section-head .tag{
+    font-family:'Space Mono', monospace;
+    font-size:0.8rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold-bright);
+    display:block;
+    margin-bottom:14px;
+  }
+  .section-head h2{
+    font-family:'Rye', serif;
+    font-size:clamp(2rem, 3.6vw, 2.8rem);
+    color:var(--cream);
+  }
+  .section-head p{
+    color:var(--cream-dim);
+    max-width:520px;
+    margin:16px auto 0;
+    line-height:1.6;
+  }
+
+  /* ---------- SERVICES AS FANNED CARDS ---------- */
+  .fan-wrap{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:28px;
+    padding-top:20px;
+  }
+  .service-card{
+    background:var(--cream);
+    color:var(--carbon);
+    width:250px;
+    min-height:300px;
+    border-radius:12px;
+    padding:26px 22px;
+    position:relative;
+    box-shadow:0 18px 30px rgba(0,0,0,0.35);
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .fan-wrap .service-card:nth-child(1){transform:rotate(-6deg) translateY(10px);}
+  .fan-wrap .service-card:nth-child(2){transform:rotate(-2deg) translateY(-6px);}
+  .fan-wrap .service-card:nth-child(3){transform:rotate(2deg) translateY(-6px);}
+  .fan-wrap .service-card:nth-child(4){transform:rotate(6deg) translateY(10px);}
+  .service-card:hover{
+    transform:rotate(0deg) translateY(-14px) scale(1.03);
+    box-shadow:0 26px 40px rgba(0,0,0,0.45);
+    z-index:5;
+  }
+  .service-suit{
+    font-size:2.2rem;
+    margin-bottom:14px;
+  }
+  .suit-spade{color:var(--carbon);}
+  .suit-diamond, .suit-heart{color:var(--burgundy);}
+  .suit-club{color:var(--felt-dark);}
+  .service-card h3{
+    font-family:'Rye', serif;
+    font-size:1.25rem;
+    margin-bottom:10px;
+    color:var(--carbon);
+  }
+  .service-card p{
+    font-size:0.88rem;
+    line-height:1.5;
+    color:#3a352f;
+    margin-bottom:16px;
+  }
+  .service-price{
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:1.1rem;
+    color:var(--burgundy);
+    border-top:1px dashed #c9c0aa;
+    padding-top:12px;
+  }
+
+  /* ---------- ABOUT / BARBER ---------- */
+  .about{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:60px;
+    align-items:center;
+  }
+  .about-visual{
+    background:var(--felt-dark);
+    border:1px solid rgba(201,162,39,0.35);
+    border-radius:16px;
+    height:420px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .about-visual .big-suit{
+    font-size:9rem;
+    color:rgba(201,162,39,0.18);
+  }
+  .about-visual .quote-chip{
+    position:absolute;
+    bottom:24px;
+    left:24px;
+    right:24px;
+    background:rgba(20,16,15,0.75);
+    border:1px solid rgba(230,196,88,0.4);
+    border-radius:10px;
+    padding:18px 20px;
+    font-size:0.95rem;
+    line-height:1.5;
+    color:var(--cream-dim);
+  }
+  .about-text .tag{
+    font-family:'Space Mono', monospace;
+    font-size:0.8rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold-bright);
+    display:block;
+    margin-bottom:14px;
+  }
+  .about-text h2{
+    font-family:'Rye', serif;
+    font-size:clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom:20px;
+  }
+  .about-text p{
+    color:var(--cream-dim);
+    line-height:1.7;
+    margin-bottom:18px;
+  }
+  .about-stats{
+    display:flex;
+    gap:36px;
+    margin-top:28px;
+  }
+  .stat b{
+    display:block;
+    font-family:'Rye', serif;
+    font-size:1.8rem;
+    color:var(--gold-bright);
+  }
+  .stat span{
+    font-size:0.8rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--cream-dim);
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{
+    background:var(--felt-dark);
+  }
+  .test-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .test-card{
+    background:rgba(239,231,216,0.05);
+    border:1px solid rgba(201,162,39,0.25);
+    border-radius:12px;
+    padding:28px 24px;
+  }
+  .test-card .stars{color:var(--gold); margin-bottom:14px; letter-spacing:2px;}
+  .test-card p{
+    color:var(--cream-dim);
+    font-size:0.95rem;
+    line-height:1.6;
+    margin-bottom:16px;
+  }
+  .test-card .who{
+    font-family:'Space Mono', monospace;
+    font-size:0.8rem;
+    color:var(--gold-bright);
+  }
+
+  /* ---------- LOCATION / HOURS ---------- */
+  .location{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+  }
+  .hours-table{
+    width:100%;
+    border-collapse:collapse;
+  }
+  .hours-table tr{border-bottom:1px solid rgba(201,162,39,0.2);}
+  .hours-table td{
+    padding:12px 4px;
+    font-size:0.95rem;
+  }
+  .hours-table td:first-child{color:var(--cream-dim); text-transform:uppercase; letter-spacing:0.04em; font-size:0.82rem;}
+  .hours-table td:last-child{
+    text-align:right;
+    font-family:'Space Mono', monospace;
+    color:var(--gold-bright);
+  }
+  .location-info h3{
+    font-family:'Rye', serif;
+    font-size:1.6rem;
+    margin-bottom:18px;
+  }
+  .info-line{
+    display:flex;
+    gap:12px;
+    margin-bottom:14px;
+    color:var(--cream-dim);
+    font-size:0.95rem;
+  }
+  .map-box{
+    background:var(--felt-dark);
+    border:1px solid rgba(201,162,39,0.3);
+    border-radius:14px;
+    height:100%;
+    min-height:280px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--cream-dim);
+    font-family:'Space Mono', monospace;
+    font-size:0.85rem;
+    text-align:center;
+    padding:20px;
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    text-align:center;
+    background:linear-gradient(180deg, var(--felt) 0%, var(--felt-dark) 100%);
+    border-top:1px solid rgba(201,162,39,0.3);
+    border-bottom:1px solid rgba(201,162,39,0.3);
+  }
+  .final-cta h2{
+    font-family:'Rye', serif;
+    font-size:clamp(2rem, 4vw, 3rem);
+    margin-bottom:18px;
+  }
+  .final-cta p{
+    color:var(--cream-dim);
+    margin-bottom:32px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--carbon);
+    padding:40px 24px 30px;
+    text-align:center;
+    color:var(--cream-dim);
+    font-size:0.85rem;
+    position:relative;
+    z-index:1;
+  }
+  footer .foot-brand{
+    font-family:'Rye', serif;
+    color:var(--gold-bright);
+    font-size:1.2rem;
+    margin-bottom:10px;
+  }
+
+  /* ---------- WHATSAPP FLOAT ---------- */
+  .wa-float{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    background:#25D366;
+    color:#fff;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.6rem;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+    z-index:200;
+    transition:transform 0.2s;
+  }
+  .wa-float:hover{transform:scale(1.08);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px){
+    nav ul{display:none;}
+    .nav-cta{font-size:0.78rem; padding:9px 14px;}
+    .hero{grid-template-columns:1fr; padding-top:50px;}
+    .card-stage{height:340px; margin-top:20px;}
+    .playing-card{width:180px; height:260px;}
+    .about{grid-template-columns:1fr;}
+    .test-grid{grid-template-columns:1fr;}
+    .location{grid-template-columns:1fr;}
+    .section{padding:70px 20px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .ace-card{animation:none;}
+    *{transition:none !important;}
+  }
+
+  :focus-visible{
+    outline:2px solid var(--gold-bright);
+    outline-offset:3px;
+  }
+
+  /* ---------- LOADER ---------- */
+  #loader{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:var(--carbon);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:22px;
+    transition:opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #loader.loader-hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+  .loader-cards{
+    position:relative;
+    width:120px;
+    height:150px;
+  }
+  .loader-card{
+    position:absolute;
+    top:0; left:0;
+    width:90px;
+    height:130px;
+    border-radius:8px;
+    background:var(--cream);
+    border:2px solid var(--gold);
+    box-shadow:0 12px 24px rgba(0,0,0,0.5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Rye', serif;
+    font-size:2rem;
+    animation:loader-deal 1.4s ease-in-out infinite;
+  }
+  .loader-card:nth-child(1){color:var(--carbon); animation-delay:0s;}
+  .loader-card:nth-child(2){color:var(--burgundy); animation-delay:0.15s;}
+  .loader-card:nth-child(3){color:var(--felt-dark); animation-delay:0.3s;}
+  @keyframes loader-deal{
+    0%{ transform:translate(0,-40px) rotate(0deg); opacity:0; }
+    25%{ opacity:1; }
+    50%{ transform:translate(15px,10px) rotate(12deg); opacity:1; }
+    75%{ transform:translate(15px,10px) rotate(12deg); opacity:1; }
+    100%{ transform:translate(0,-40px) rotate(0deg); opacity:0; }
+  }
+  .loader-text{
+    font-family:'Space Mono', monospace;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    font-size:0.8rem;
+    color:var(--gold-bright);
+  }
+  .loader-text::after{
+    content:"";
+    animation:loader-dots 1.2s steps(4) infinite;
+  }
+  @keyframes loader-dots{
+    0%{content:"";} 25%{content:".";} 50%{content:"..";} 75%{content:"...";} 100%{content:"";}
+  }
+
+  /* ---------- FLOATING SUITS (ambient card animation) ---------- */
+  .suit-drift{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+  }
+  .suit-drift span{
+    position:absolute;
+    bottom:-60px;
+    color:rgba(201,162,39,0.14);
+    font-size:1.8rem;
+    animation:drift 16s linear infinite;
+  }
+  @keyframes drift{
+    0%{ transform:translateY(0) rotate(0deg); opacity:0; }
+    10%{ opacity:1; }
+    90%{ opacity:1; }
+    100%{ transform:translateY(-115vh) rotate(360deg); opacity:0; }
+  }
+
+  /* ---------- SCROLL REVEAL (deal-in) ---------- */
+  .deal-in{
+    opacity:0;
+    transform:translateY(40px) rotate(-3deg);
+    transition:opacity 0.7s cubic-bezier(.2,.8,.2,1), transform 0.7s cubic-bezier(.2,.8,.2,1);
+  }
+  .deal-in.is-visible{
+    opacity:1;
+    transform:translateY(0) rotate(0deg);
+  }
+
+  /* ---------- FLIP CARD (services) ---------- */
+  .service-card{ perspective:1200px; }
+  .service-card .card-flip{
+    position:relative;
+    width:100%;
+    height:100%;
+    transition:transform 0.6s cubic-bezier(.2,.8,.2,1);
+    transform-style:preserve-3d;
+  }
+  .service-card:hover .card-flip{ transform:rotateY(180deg); }
+  .card-face{
+    backface-visibility:hidden;
+  }
+  .card-face.card-front{ position:relative; }
+  .card-face.card-back{
+    position:absolute;
+    inset:0;
+    transform:rotateY(180deg);
+    background:var(--felt-dark);
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-size:cover;
+    background-position:center;
+  }
+  .card-back-suit{
+    font-size:5rem;
+    color:rgba(230,196,88,0.85);
+    text-shadow:0 4px 10px rgba(0,0,0,0.6);
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+  }
+  .gallery-item{
+    position:relative;
+    border-radius:12px;
+    overflow:hidden;
+    height:260px;
+    border:1px solid rgba(201,162,39,0.3);
+    box-shadow:0 16px 30px rgba(0,0,0,0.35);
+  }
+  .gallery-item:nth-child(2){ transform:translateY(-14px); }
+  .gallery-item img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform 0.5s ease, filter 0.5s ease;
+    filter:grayscale(15%);
+  }
+  .gallery-item:hover img{ transform:scale(1.08); filter:grayscale(0%); }
+  .gallery-caption{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding:14px 16px;
+    background:linear-gradient(0deg, rgba(0,0,0,0.75), transparent);
+    font-family:'Space Mono', monospace;
+    font-size:0.8rem;
+    letter-spacing:0.05em;
+    color:var(--cream);
+  }
+  @media (max-width:900px){
+    .gallery-grid{ grid-template-columns:1fr; }
+    .gallery-item:nth-child(2){ transform:none; }
+  }
+
+  .map-box iframe{
+    width:100%;
+    height:100%;
+    min-height:280px;
+    border:0;
+    border-radius:14px;
+    filter:grayscale(35%) invert(92%) contrast(90%);
+  }
+
+  footer .foot-credit{
+    margin-top:10px;
+    font-size:0.78rem;
+    opacity:0.8;
+  }
+  footer .foot-credit a{
+    color:var(--gold-bright);
+    font-weight:700;
+    border-bottom:1px solid rgba(230,196,88,0.5);
+    transition:opacity 0.2s;
+  }
+  footer .foot-credit a:hover{ opacity:0.75; }
+
+  @media (prefers-reduced-motion: reduce){
+    .loader-card, .suit-drift span{ animation:none; }
+    .deal-in{ opacity:1; transform:none; }
+    .service-card:hover .card-flip{ transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="loader" aria-hidden="true">
+  <div class="loader-cards">
+    <div class="loader-card">♠</div>
+    <div class="loader-card">♥</div>
+    <div class="loader-card">♣</div>
+  </div>
+  <div class="loader-text">Repartiendo cartas</div>
+</div>
+
+<div class="suit-drift" aria-hidden="true">
+  <span style="left:5%; animation-duration:14s; animation-delay:0s;">♠</span>
+  <span style="left:18%; animation-duration:19s; animation-delay:2s;">♦</span>
+  <span style="left:32%; animation-duration:16s; animation-delay:5s;">♣</span>
+  <span style="left:48%; animation-duration:21s; animation-delay:1s;">♥</span>
+  <span style="left:63%; animation-duration:15s; animation-delay:4s;">♠</span>
+  <span style="left:77%; animation-duration:18s; animation-delay:3s;">♦</span>
+  <span style="left:90%; animation-duration:17s; animation-delay:6s;">♣</span>
+</div>
+
+<header>
+  <nav>
+    <div class="brand"><span class="suit">♠</span> El As Barbería</div>
+    <ul>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#opiniones">Opiniones</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+    </ul>
+    <a href="#reserva" class="nav-cta">Reservar hora</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <span class="hero-eyebrow">♦ Barbería en Ñuñoa</span>
+    <h1>Tu mejor jugada<br>empieza con un <span>buen corte</span></h1>
+    <p class="lead">Cortes clásicos y modernos, ritual de barba con toallas calientes y una experiencia pensada para que salgas con la carta ganadora. Sin apuros, sin filas eternas.</p>
+    <div class="hero-actions">
+      <a href="#reserva" class="btn-primary">Reservar mi hora →</a>
+      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+    </div>
+  </div>
+  <div class="card-stage">
+    <div class="playing-card back-card-1"><div class="back-pattern"></div></div>
+    <div class="playing-card back-card-2"><div class="back-pattern"></div></div>
+    <div class="playing-card ace-card">
+      <div class="ace-corner">A<br><span class="suit">♠</span></div>
+      <div class="ace-center">♠</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="servicios">
+  <div class="section-head deal-in">
+    <span class="tag">La carta de servicios</span>
+    <h2>Elige tu jugada</h2>
+    <p>Cada palo representa un tipo de servicio — así sabes exactamente qué esperar antes de sentarte en la silla.</p>
+  </div>
+  <div class="fan-wrap">
+    <div class="service-card deal-in">
+      <div class="card-flip">
+        <div class="card-face card-front">
+          <div class="service-suit suit-spade">♠</div>
+          <h3>Corte clásico</h3>
+          <p>Tijera y máquina, lavado incluido y peinado final con productos profesionales.</p>
+          <div class="service-price">$12.000</div>
+        </div>
+        <div class="card-face card-back"><span class="card-back-suit">♠</span></div>
+      </div>
+    </div>
+    <div class="service-card deal-in" style="transition-delay:0.08s;">
+      <div class="card-flip">
+        <div class="card-face card-front">
+          <div class="service-suit suit-diamond">♦</div>
+          <h3>Barba + toalla caliente</h3>
+          <p>Perfilado de barba, toallas calientes y aceite hidratante para un acabado prolijo.</p>
+          <div class="service-price">$10.000</div>
+        </div>
+        <div class="card-face card-back"><span class="card-back-suit">♦</span></div>
+      </div>
+    </div>
+    <div class="service-card deal-in" style="transition-delay:0.16s;">
+      <div class="card-flip">
+        <div class="card-face card-front">
+          <div class="service-suit suit-heart">♥</div>
+          <h3>Ritual facial</h3>
+          <p>Limpieza facial, masaje de rostro y hombros. La jugada para relajarte de verdad.</p>
+          <div class="service-price">$14.000</div>
+        </div>
+        <div class="card-face card-back"><span class="card-back-suit">♥</span></div>
+      </div>
+    </div>
+    <div class="service-card deal-in" style="transition-delay:0.24s;">
+      <div class="card-flip">
+        <div class="card-face card-front">
+          <div class="service-suit suit-club">♣</div>
+          <h3>Full house</h3>
+          <p>Corte + barba + ritual facial completo. Nuestra combinación más pedida.</p>
+          <div class="service-price">$29.000</div>
+        </div>
+        <div class="card-face card-back"><span class="card-back-suit">♣</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="galeria">
+  <div class="section-head deal-in">
+    <span class="tag">♠ Nuestro trabajo</span>
+    <h2>Cortes que hablan por sí solos</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item deal-in">
+      <img src="https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?auto=format&fit=crop&w=800&q=80" alt="Corte de pelo clásico en barbería">
+      <div class="gallery-caption">Corte clásico</div>
+    </div>
+    <div class="gallery-item deal-in" style="transition-delay:0.1s;">
+      <img src="https://images.unsplash.com/photo-1770253980732-dfed1cfdfa43?auto=format&fit=crop&w=800&q=80" alt="Barbero cortando con máquina">
+      <div class="gallery-caption">Precisión al detalle</div>
+    </div>
+    <div class="gallery-item deal-in" style="transition-delay:0.2s;">
+      <img src="https://images.unsplash.com/photo-1758812818698-6ecd792a87da?auto=format&fit=crop&w=800&q=80" alt="Ambiente de barbería">
+      <div class="gallery-caption">El As Barbería</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="nosotros">
+  <div class="about">
+    <div class="about-visual deal-in" style="background-image:linear-gradient(180deg, rgba(18,39,32,0.15), rgba(18,39,32,0.85)), url('https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?auto=format&fit=crop&w=900&q=80'); background-size:cover; background-position:center;">
+      <div class="big-suit">♠</div>
+      <div class="quote-chip">"Llegué por un corte y me quedé por el ritual completo. Ambiente único, se nota el detalle en todo."</div>
+    </div>
+    <div class="about-text deal-in">
+      <span class="tag">♣ Sobre nosotros</span>
+      <h2>Barbería con oficio, no una peluquería más</h2>
+      <p>En El As trabajamos con navaja, tijera y toallas calientes como se ha hecho siempre — pero con la comodidad y el orden de un local pensado para que tu hora rinda. Cada corte se conversa antes de empezar: tú decides la jugada.</p>
+      <p>Ambiente relajado, buena música y un equipo que lleva años perfeccionando el detalle que hace la diferencia entre un corte y una buena experiencia.</p>
+      <div class="about-stats">
+        <div class="stat"><b>8+</b><span>Años de oficio</span></div>
+        <div class="stat"><b>4.9</b><span>Valoración promedio</span></div>
+        <div class="stat"><b>2.000+</b><span>Cortes al año</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section testimonials" id="opiniones">
+  <div class="section-head deal-in">
+    <span class="tag">♥ Lo que dicen</span>
+    <h2>Cartas boca arriba</h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card deal-in">
+      <div class="stars">★★★★★</div>
+      <p>"El mejor lavado de cabeza que me han hecho en Santiago. Salgo como nuevo cada vez."</p>
+      <div class="who">— Rodrigo M., cliente frecuente</div>
+    </div>
+    <div class="test-card deal-in" style="transition-delay:0.1s;">
+      <div class="stars">★★★★★</div>
+      <p>"Pedí hora un sábado y me atendieron puntual. El ritual de barba vale cada peso."</p>
+      <div class="who">— Felipe A., Ñuñoa</div>
+    </div>
+    <div class="test-card deal-in" style="transition-delay:0.2s;">
+      <div class="stars">★★★★★</div>
+      <p>"Ambiente increíble, se nota que les gusta lo que hacen. Ya es mi barbería de cabecera."</p>
+      <div class="who">— Ignacio R., Providencia</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ubicacion">
+  <div class="location">
+    <div class="location-info deal-in">
+      <span class="tag" style="display:block; font-family:'Space Mono',monospace; font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-bright); margin-bottom:14px;">♦ Encuéntranos</span>
+      <h3>Metro Ñuñoa, Ñuñoa</h3>
+      <div class="info-line">📍 A pasos del Metro Ñuñoa (Línea 6)</div>
+      <div class="info-line">📞 +56 9 1234 5678</div>
+      <div class="info-line">✉️ hola@elasbarberia.cl</div>
+      <table class="hours-table">
+        <tr><td>Lunes – Jueves</td><td>12:00 – 21:00</td></tr>
+        <tr><td>Viernes</td><td>12:00 – 21:00</td></tr>
+        <tr><td>Sábado</td><td>11:00 – 16:00</td></tr>
+        <tr><td>Domingo</td><td>Cerrado</td></tr>
+      </table>
+    </div>
+    <div class="map-box deal-in" style="transition-delay:0.1s;">
+      <iframe
+        src="https://www.google.com/maps?q=Metro+%C3%91u%C3%B1oa,+%C3%91u%C3%B1oa,+Regi%C3%B3n+Metropolitana,+Chile&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Ubicación El As Barbería cerca de Metro Ñuñoa">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="section final-cta" id="reserva">
+  <h2>¿Listo para tu jugada?</h2>
+  <p>Cupos limitados esta semana. Reserva por WhatsApp y te confirmamos en minutos.</p>
+  <a href="https://wa.me/56912345678" class="btn-primary">Reservar por WhatsApp →</a>
+</section>
+
+<footer>
+  <div class="foot-brand">♠ El As Barbería</div>
+  <div>A pasos del Metro Ñuñoa, Santiago · © 2026 Todos los derechos reservados</div>
+  <div class="foot-credit">Desarrollo web por <a href="https://solucionesnia.netlify.app/" target="_blank" rel="noopener">NIA</a></div>
+</footer>
+
+<a href="https://wa.me/56912345678" class="wa-float" aria-label="Escríbenos por WhatsApp">💬</a>
+
+<script>
+  // ---- Loader: se oculta cuando la página termina de cargar ----
+  window.addEventListener('load', function(){
+    var loader = document.getElementById('loader');
+    setTimeout(function(){
+      loader.classList.add('loader-hide');
+    }, 900); // deja ver al menos una vuelta del reparto de cartas
+  });
+
+  // ---- Scroll reveal estilo "reparto de cartas" ----
+  var revealEls = document.querySelectorAll('.deal-in');
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(function(el){ observer.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+</script>
+
+</body>
+</html>
